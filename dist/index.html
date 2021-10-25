@@ -8,30 +8,58 @@
     <link href="./tailwind.css" rel="stylesheet">
 </head>
 <body>
-    <!-- Top Section (Pomodoro button and Dark/Light mode button) -->
-    <div class="top-section">
-        <button class="focus:outline-black bg-white text-blue-300">Pomodoro </button>
-        
-        Light    Dark
+    <div class="container mx-auto my-8">
 
-    </div>
-    <!-- Timer -->
-    <div class="timer-section">
-        <h1 class="text-blue-500 text-3xl">00:50:00</h1>
-        <button class="focus:outline-black bg-white text-blue-300"> Start </button>
-        <button class="focus:outline-black bg-white text-blue-300"> Repeat </button>
-        <button class="focus:outline-black bg-white text-blue-300"> Set Timer </button>
-          
+        <!-- Top Section (Pomodoro button and Dark/Light mode button) -->
+        <div class="top-section grid grid-cols-3 grid-flow-col">
+            <div>
+                <button class="focus:outline-black bg-white text-blue-300">Pomodoro </button>
 
-    </div>
-    <!-- Shortcuts -->
-    <div class="shortcuts-section">
-        <h4>Shortcuts</h4>
-        <strong>Start/Pause</strong> spacebar <br>
-        <strong>Light/Dark</strong> L <br>
-        <strong>Toggle Repeat</strong> R <br>
-        <strong>Set Timer</strong> S <br>
+            </div>
 
+            <div></div>
+            <div>
+                Light    Dark
+
+            </div>
+            
+    
+        </div>
+        <!-- Timer -->
+        <div class="timer-section my-16 grid grid-cols-3 grid-flow-col">
+            <div></div>
+            <div>
+                <h1 class="text-blue-500 text-9xl">00:50:00</h1>
+                <div class="grid grid-cols-3 grid-flow-col">
+                    <div>
+                        <button class="focus:outline-black bg-blue-300 text-white p-2"> Repeat </button>
+
+                    </div>
+                    <div>
+                        <button class="focus:outline-black bg-blue-300 text-white p-2"> Start </button>
+
+                    </div>
+                    <div>
+                        <button class="focus:outline-black bg-blue-300 text-white p-2"> Set Timer </button>
+
+                    </div>
+
+                </div>
+                
+            </div>
+            <div></div>
+              
+    
+        </div>
+        <!-- Shortcuts -->
+        <div class="shortcuts-section">
+            <h4>Shortcuts</h4>
+            <strong>Start/Pause</strong> spacebar <br>
+            <strong>Light/Dark</strong> L <br>
+            <strong>Toggle Repeat</strong> R <br>
+            <strong>Set Timer</strong> S <br>
+    
+        </div>
     </div>
 
     <!-- Footer -->
