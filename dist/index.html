@@ -5,20 +5,34 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Countdown Timer</title>
+    <link href="./tailwind.css" rel="stylesheet">
 </head>
 <body>
     <!-- Top Section (Pomodoro button and Dark/Light mode button) -->
-    Pomodoro <br>
-    Light    Dark
+    <div class="top-section">
+        <button class="focus:outline-black bg-white text-blue-300">Pomodoro </button>
+        
+        Light    Dark
+
+    </div>
     <!-- Timer -->
-    <h1>00:50:00</h1>
-    Start Repeat Set Timer
+    <div class="timer-section">
+        <h1 class="text-blue-500 text-3xl">00:50:00</h1>
+        <button class="focus:outline-black bg-white text-blue-300"> Start </button>
+        <button class="focus:outline-black bg-white text-blue-300"> Repeat </button>
+        <button class="focus:outline-black bg-white text-blue-300"> Set Timer </button>
+          
+
+    </div>
     <!-- Shortcuts -->
-    <h4>Shortcuts</h4>
-    <strong>Start/Pause</strong> spacebar <br>
-    <strong>Light/Dark</strong> L <br>
-    <strong>Toggle Repeat</strong> R <br>
-    <strong>Set Timer</strong> S <br>
+    <div class="shortcuts-section">
+        <h4>Shortcuts</h4>
+        <strong>Start/Pause</strong> spacebar <br>
+        <strong>Light/Dark</strong> L <br>
+        <strong>Toggle Repeat</strong> R <br>
+        <strong>Set Timer</strong> S <br>
+
+    </div>
 
     <!-- Footer -->
     <footer>
