@@ -1,3 +1,6 @@
 "use strict";
 const timer = document.getElementById("timer");
-timer.innerHTML = "00:40:00";
+const startbtn = document.getElementById("start");
+startbtn.addEventListener("click", () => {
+    timer.innerHTML = "00:40:00";
+});
