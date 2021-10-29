@@ -123,5 +123,6 @@ startbtn.addEventListener("click",()=>{
     // })
 
     getCountdownTime();
+    startbtn.innerHTML="Pause";
 
 });

@@ -111,4 +111,5 @@ startbtn.addEventListener("click", () => {
     //     timer.innerHTML= mins+ ":" + secs;
     // })
     getCountdownTime();
+    startbtn.innerHTML = "Pause";
 });
