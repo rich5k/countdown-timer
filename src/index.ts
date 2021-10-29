@@ -4,7 +4,8 @@ const timeBits=time.split(":");
 var setHours= parseInt(timeBits[0]);
 var setMins = parseInt(timeBits[1]);
 var setSecs = parseInt(timeBits[2]);
-console.log(setHours)
+console.log(setHours);
+var isRepeat=false;
 const startbtn= document.getElementById("start") as HTMLElement;
 function getCountdownTime(){
     var currentDate = new Date();
@@ -103,26 +104,29 @@ function getCountdownTime(){
         timer.innerHTML=nhours+":"+nminutes+":"+nseconds;
         
         // If the count down is over, write some text 
-        if (distance < 0) {
+        if (distance < 0 && !isRepeat) {
             clearInterval(x);
             timer.innerHTML = "EXPIRED";
+        }else if(isRepeat){
+
         }
     }, 1000);
     // timer.innerHTML=currentHours+":"+currentMinutes+":"+currentSeconds;
 }
 startbtn.addEventListener("click",()=>{
-    // setInterval(function(){
-    //     var t1 = time, minutes, seconds;
-    //     mins=mins/60,10;
-    //     secs=secs%60,10;
-        
-    //     mins= mins <10 ? "0"+mins : mins;
-    //     secs = secs <10 ? "0"+secs : secs;
-    //     timer.innerHTML= mins+ ":" + secs;
-
-    // })
 
     getCountdownTime();
     startbtn.innerHTML="Pause";
 
 });
+
+const repeatbtn= document.getElementById("repeat") as HTMLElement;
+const repeatMarker= document.getElementById("repeat-marker") as HTMLElement;
+repeatbtn.addEventListener("click",()=>{
+    isRepeat=!isRepeat;
+    if(isRepeat){
+        repeatMarker.innerHTML="R";
+    }else{
+        repeatMarker.innerHTML="";
+    }
+})
