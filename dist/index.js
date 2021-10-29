@@ -104,9 +104,12 @@ function getCountdownTime() {
     }, 1000);
     // timer.innerHTML=currentHours+":"+currentMinutes+":"+currentSeconds;
 }
-startbtn.addEventListener("click", () => {
+function startEvent() {
     getCountdownTime();
     startbtn.innerHTML = "Pause";
+}
+startbtn.addEventListener("click", () => {
+    startEvent();
 });
 const repeatbtn = document.getElementById("repeat");
 const repeatMarker = document.getElementById("repeat-marker");
@@ -118,4 +121,7 @@ repeatbtn.addEventListener("click", () => {
     else {
         repeatMarker.innerHTML = "";
     }
+});
+document.addEventListener('keydown', (e) => {
+    console.log(e.key);
 });
