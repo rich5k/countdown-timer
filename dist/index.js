@@ -126,5 +126,11 @@ repeatbtn.addEventListener("click", () => {
     repeatEvent();
 });
 document.addEventListener('keydown', (e) => {
-    console.log(e.key);
+    // console.log(e.key);
+    if (e.key == "R") {
+        repeatEvent();
+    }
+    else if (e.key == " ") {
+        startEvent();
+    }
 });
