@@ -113,7 +113,7 @@ startbtn.addEventListener("click", () => {
 });
 const repeatbtn = document.getElementById("repeat");
 const repeatMarker = document.getElementById("repeat-marker");
-repeatbtn.addEventListener("click", () => {
+function repeatEvent() {
     isRepeat = !isRepeat;
     if (isRepeat) {
         repeatMarker.innerHTML = "R";
@@ -121,6 +121,9 @@ repeatbtn.addEventListener("click", () => {
     else {
         repeatMarker.innerHTML = "";
     }
+}
+repeatbtn.addEventListener("click", () => {
+    repeatEvent();
 });
 document.addEventListener('keydown', (e) => {
     console.log(e.key);

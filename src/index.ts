@@ -125,13 +125,16 @@ startbtn.addEventListener("click",()=>{
 
 const repeatbtn= document.getElementById("repeat") as HTMLElement;
 const repeatMarker= document.getElementById("repeat-marker") as HTMLElement;
-repeatbtn.addEventListener("click",()=>{
+function repeatEvent(){
     isRepeat=!isRepeat;
     if(isRepeat){
         repeatMarker.innerHTML="R";
     }else{
         repeatMarker.innerHTML="";
     }
+}
+repeatbtn.addEventListener("click",()=>{
+    repeatEvent();
 });
 
 document.addEventListener('keydown',(e)=>{
