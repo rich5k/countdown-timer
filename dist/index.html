@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Countdown Timer</title>
     <link href="./tailwind.css" rel="stylesheet">
+    <link rel="stylesheet" href="./index.css">
 </head>
 <body>
     <div class="container mx-auto my-8">
@@ -19,7 +20,26 @@
 
             <div></div>
             <div>
-                Light    Dark
+                    <label for="toggleB" class="flex items-center cursor-pointer">
+                        <!-- label -->
+                        <div class="mr-3 text-gray-700 font-medium">
+                            Light 
+                        </div>
+                        <!-- toggle -->
+                        <div class="relative">
+                            <!-- input -->
+                            <input type="checkbox" id="toggleB" class="sr-only">
+                            <!-- line -->
+                            <div class="block bg-gray-600 w-14 h-8 rounded-full"></div>
+                            <!-- dot -->
+                            <div class="dot absolute left-1 top-1 bg-white w-6 h-6 rounded-full transition px-0.5" id="mode-emoji">☀️</div>
+                        </div>
+                        <!-- label -->
+                        <div class="ml-3 text-gray-700 font-medium">
+                            Dark
+                        </div>
+                    </label>
+                        
 
             </div>
             

@@ -136,6 +136,19 @@ function repeatEvent(){
 repeatbtn.addEventListener("click",()=>{
     repeatEvent();
 });
+var isDark=false;
+var modeEmoji= document.getElementById("mode-emoji") as HTMLElement;
+function toggleDarkMode(){
+    isDark=!isDark;
+    (<HTMLInputElement>document.getElementById("toggleB")).checked=isDark;
+    if(isDark){
+        modeEmoji.textContent='🌙';
+    }
+    else{
+        modeEmoji.textContent='☀️';
+    }
+
+}
 
 document.addEventListener('keydown',(e)=>{
     // console.log(e.key);
@@ -144,5 +157,8 @@ document.addEventListener('keydown',(e)=>{
     }
     else if(e.key==" "){
         startEvent();
+    }
+    else if(e.key=="L"){
+        toggleDarkMode();
     }
 })
