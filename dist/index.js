@@ -130,12 +130,6 @@ var modeEmoji = document.getElementById("mode-emoji");
 function toggleDarkMode() {
     isDark = !isDark;
     document.getElementById("toggleB").checked = isDark;
-    if (isDark) {
-        modeEmoji.textContent = '🌙';
-    }
-    else {
-        modeEmoji.textContent = '☀️';
-    }
 }
 document.addEventListener('keydown', (e) => {
     // console.log(e.key);

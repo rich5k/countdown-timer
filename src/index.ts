@@ -141,12 +141,7 @@ var modeEmoji= document.getElementById("mode-emoji") as HTMLElement;
 function toggleDarkMode(){
     isDark=!isDark;
     (<HTMLInputElement>document.getElementById("toggleB")).checked=isDark;
-    if(isDark){
-        modeEmoji.textContent='🌙';
-    }
-    else{
-        modeEmoji.textContent='☀️';
-    }
+    
 
 }
 
