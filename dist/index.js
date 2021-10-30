@@ -127,9 +127,11 @@ repeatbtn.addEventListener("click", () => {
 });
 var isDark = false;
 var modeEmoji = document.getElementById("mode-emoji");
+var body = document.querySelector('body');
 function toggleDarkMode() {
     isDark = !isDark;
     document.getElementById("toggleB").checked = isDark;
+    body.classList.toggle('dark-body');
 }
 document.addEventListener('keydown', (e) => {
     // console.log(e.key);

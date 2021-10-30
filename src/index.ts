@@ -138,12 +138,14 @@ repeatbtn.addEventListener("click",()=>{
 });
 var isDark=false;
 var modeEmoji= document.getElementById("mode-emoji") as HTMLElement;
+var body = document.querySelector('body') as HTMLElement;
 function toggleDarkMode(){
     isDark=!isDark;
     (<HTMLInputElement>document.getElementById("toggleB")).checked=isDark;
-    
+    body.classList.toggle('dark-body');
 
 }
+
 
 document.addEventListener('keydown',(e)=>{
     // console.log(e.key);

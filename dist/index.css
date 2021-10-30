@@ -1,5 +1,8 @@
 
   /* Toggle B */
+  input ~.dot:before{
+    content: '☀️';
+  }
   input:checked ~ .dot {
       transform: translateX(100%);
       background-color: #48bb78;
@@ -7,10 +10,12 @@
 input:checked ~.dot:before{
     transform: translateX(100%);
     content: '🌙';
+    color: #fff;
   }
-  input ~.dot:before{
-    content: '☀️';
-  }
+.dark-body{
+    background-color: #000;
+    /* color: #fff; */
+}
   footer{
     color: white;
     background: #000;
