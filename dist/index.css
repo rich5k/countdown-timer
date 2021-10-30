@@ -12,6 +12,9 @@ input:checked ~.dot:before{
     content: '🌙';
     color: #fff;
   }
+.setTimerSection{
+    
+}
 .dark-body{
     background-color: #000;
     /* color: #fff; */
