@@ -1,7 +1,7 @@
 "use strict";
-const timer = document.getElementById("timer");
-const time = timer.innerHTML;
-const timeBits = time.split(":");
+let timer = document.getElementById("timer");
+let time = timer.innerHTML;
+let timeBits = time.split(":");
 var setHours = parseInt(timeBits[0]);
 var setMins = parseInt(timeBits[1]);
 var setSecs = parseInt(timeBits[2]);
@@ -140,6 +140,13 @@ setTimerBtn.onclick = function () {
     timerOverlay.style.display = "block";
 };
 startTimer.onclick = function () {
+    let hourInput = document.getElementById("hour-input").value;
+    let minsInput = document.getElementById("minutes-input").value;
+    let secsInput = document.getElementById("seconds-input").value;
+    hourInput = hourInput < 10 ? "0" + hourInput : hourInput;
+    minsInput = minsInput < 10 ? "0" + minsInput : minsInput;
+    secsInput = secsInput < 10 ? "0" + secsInput : secsInput;
+    timer.innerHTML = hourInput + ":" + minsInput + ":" + secsInput;
     timerOverlay.style.display = "none";
 };
 document.addEventListener('keydown', (e) => {

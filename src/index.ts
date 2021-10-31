@@ -155,6 +155,10 @@ setTimerBtn.onclick= function(){
 }
 
 startTimer.onclick= function(){
+    let hourInput = (<HTMLInputElement>document.getElementById("hour-input")).value;
+    let minsInput = (<HTMLInputElement>document.getElementById("minutes-input")).value;
+    let secsInput = (<HTMLInputElement>document.getElementById("seconds-input")).value;
+    timer.innerHTML= hourInput+":"+minsInput+":"+secsInput;
     timerOverlay.style.display="none";
 }
 
