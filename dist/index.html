@@ -51,39 +51,45 @@
             <div>
                 <!-- overlay effect for set timer -->
                 <div id="timer-overlay" class="fixed hidden inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full">
-                    <form action="">
-                        <label class="label-with-input">
-                            <input class="hours" type="text" pattern="[0-9]">
-                            <span class="input-label">
-                                <span class="input-label-text">
-                                    Hours
+                    <div class="top-20 relative mx-auto">
+                        <div class="mt-3 text-center">
+
+                            <form action="#">
+                                <label class="label-with-input">
+                                    <input class="hours" type="text" pattern="[0-9]">
+                                    <span class="input-label">
+                                        <span class="input-label-text">
+                                            Hours
+                                        </span>
+                                    </span>
+                                </label>
+                                <span class="divider">
+                                    :
                                 </span>
-                            </span>
-                        </label>
-                        <span class="divider">
-                            :
-                        </span>
-                        <label class="label-with-input">
-                            <input class="minutes" type="text" pattern="[0-9]">
-                            <span class="input-label">
-                                <span class="input-label-text">
-                                    Minutes
+                                <label class="label-with-input">
+                                    <input class="minutes" type="text" pattern="[0-9]">
+                                    <span class="input-label">
+                                        <span class="input-label-text">
+                                            Minutes
+                                        </span>
+                                    </span>
+                                </label>
+                                <span class="divider">
+                                    :
                                 </span>
-                            </span>
-                        </label>
-                        <span class="divider">
-                            :
-                        </span>
-                        <label class="label-with-input">
-                            <input class="seconds" type="text" pattern="[0-9]">
-                            <span class="input-label">
-                                <span class="input-label-text">
-                                    Seconds
-                                </span>
-                            </span>
-                        </label>
-                        <button type="submit" class="focus:outline-black bg-blue-300 text-white p-2 shadow-xl rounded-full px-4">Start</button>
-                    </form>
+                                <label class="label-with-input">
+                                    <input class="seconds" type="text" pattern="[0-9]">
+                                    <span class="input-label">
+                                        <span class="input-label-text">
+                                            Seconds
+                                        </span>
+                                    </span>
+                                </label>
+                                <button id="startTimer" type="submit" class="focus:outline-black bg-blue-300 text-white p-2 shadow-xl rounded-full px-4">Start</button>
+                            </form>
+                        </div>
+
+                    </div>
                 </div>
                 <h1 class="text-blue-500 text-9xl" id="timer">00:50:00</h1>
                 
@@ -97,7 +103,7 @@
 
                     </div>
                     <div>
-                        <button class="focus:outline-black bg-blue-300 text-white p-2 shadow-xl rounded-full px-4"> Set Timer </button>
+                        <button class="focus:outline-black bg-blue-300 text-white p-2 shadow-xl rounded-full px-4" id="set-timer"> Set Timer </button>
 
                     </div>
 

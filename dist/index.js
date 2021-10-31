@@ -133,6 +133,15 @@ function toggleDarkMode() {
     document.getElementById("toggleB").checked = isDark;
     body.classList.toggle('dark-body');
 }
+let timerOverlay = document.getElementById("timer-overlay");
+let setTimerBtn = document.getElementById("set-timer");
+let startTimer = document.getElementById("startTimer");
+setTimerBtn.onclick = function () {
+    timerOverlay.style.display = "block";
+};
+startTimer.onclick = function () {
+    timerOverlay.style.display = "none";
+};
 document.addEventListener('keydown', (e) => {
     // console.log(e.key);
     if (e.key === "R") {
@@ -143,5 +152,8 @@ document.addEventListener('keydown', (e) => {
     }
     else if (e.key === "L") {
         toggleDarkMode();
+    }
+    else if (e.key === "S") {
+        timerOverlay.style.display = "block";
     }
 });

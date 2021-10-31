@@ -146,6 +146,17 @@ function toggleDarkMode(){
 
 }
 
+let timerOverlay= document.getElementById("timer-overlay") as HTMLElement;
+let setTimerBtn= document.getElementById("set-timer") as HTMLElement;
+let startTimer= document.getElementById("startTimer") as HTMLElement;
+
+setTimerBtn.onclick= function(){
+    timerOverlay.style.display="block";
+}
+
+startTimer.onclick= function(){
+    timerOverlay.style.display="none";
+}
 
 document.addEventListener('keydown',(e)=>{
     // console.log(e.key);
@@ -158,4 +169,8 @@ document.addEventListener('keydown',(e)=>{
     else if(e.key==="L"){
         toggleDarkMode();
     }
+    else if(e.key==="S"){
+        timerOverlay.style.display="block";   
+    }
 })
+
