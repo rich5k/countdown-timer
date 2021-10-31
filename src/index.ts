@@ -149,13 +149,13 @@ function toggleDarkMode(){
 
 document.addEventListener('keydown',(e)=>{
     // console.log(e.key);
-    if(e.key=="R"){
+    if(e.key==="R"){
         repeatEvent();
     }
-    else if(e.key==" "){
+    else if(e.key===" "){
         startEvent();
     }
-    else if(e.key=="L"){
+    else if(e.key==="L"){
         toggleDarkMode();
     }
 })
