@@ -7,6 +7,11 @@ var setSecs = parseInt(timeBits[2]);
 console.log(setHours);
 var isRepeat=false;
 const startbtn= document.getElementById("start") as HTMLElement;
+let tickingClock;
+let timeUpBeeper;
+function preload(){
+    tickingClock= loadSound('../assets/Clock-Ticking-C-www.fesliyanstudios.com.mp3');
+}
 function getCountdownTime(){
     var currentDate = new Date();
     var currentYear = currentDate.getFullYear();
