@@ -12,8 +12,14 @@ input:checked ~.dot:before{
     content: '🌙';
     color: #fff;
   }
-.setTimerSection{
+.hours:focus, .minutes:focus, .seconds:focus{
+    outline:none;
+    background-color: #93C5FD
     
+}
+.hours, .minutes, .seconds{
+    background-color: transparent;
+    text-align: center;
 }
 .dark-body{
     background-color: #000;
