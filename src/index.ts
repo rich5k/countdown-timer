@@ -1,3 +1,6 @@
+// import P5 from "p5";
+// import "p5/lib/addons/p5.sound";
+// const p5=P5;
 const timer = document.getElementById("timer") as HTMLElement;
 const time= timer.innerHTML;
 const timeBits=time.split(":");
@@ -7,10 +10,10 @@ var setSecs = parseInt(timeBits[2]);
 console.log(setHours);
 var isRepeat=false;
 const startbtn= document.getElementById("start") as HTMLElement;
-let tickingClock;
-let timeUpBeeper;
+// let tickingClock;
+// let timeUpBeeper;
 function preload(){
-    tickingClock= loadSound('../assets/Clock-Ticking-C-www.fesliyanstudios.com.mp3');
+    // tickingClock= loadSound('../assets/Clock-Ticking-C-www.fesliyanstudios.com.mp3');
 }
 function getCountdownTime(){
     var currentDate = new Date();
@@ -82,50 +85,77 @@ function getCountdownTime(){
 
     currentDay= currentDay+extraDay;
 
-    var countDownDate = new Date(`${currentMonth} ${currentDay}, ${currentYear} ${currentHours}:${currentMinutes}:${currentSeconds}`).getTime();
+    return new Date(`${currentMonth} ${currentDay}, ${currentYear} ${currentHours}:${currentMinutes}:${currentSeconds}`).getTime();
     
     // console.log(setHours);
     // timer.innerHTML=countDownDate.toString();
 
 
-    // Update the count down every 1 second
-    var x = setInterval(function() {
-
-        // Get todays date and time
-        var now = new Date().getTime();
-        
-        // Find the distance between now an the count down date
-        var distance = countDownDate - now;
-        
-        // Time calculations for days, hours, minutes and seconds
-        var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-        var seconds = Math.floor((distance % (1000 * 60)) / 1000);
-        
-        // Output the result in an element with id="timer"
-        var nhours= hours <10 ? "0"+hours : hours;
-        var nminutes= minutes <10 ? "0"+minutes : minutes;
-        var nseconds = seconds <10 ? "0"+seconds : seconds;
-        timer.innerHTML=nhours+":"+nminutes+":"+nseconds;
-        
-        // If the count down is over, write some text 
-        if (distance < 0 && !isRepeat) {
-            clearInterval(x);
-            timer.innerHTML = "EXPIRED";
-        }else if(isRepeat){
-
-        }
-    }, 1000);
     // timer.innerHTML=currentHours+":"+currentMinutes+":"+currentSeconds;
 }
+
+var countDownDate = getCountdownTime();
+var distance=0;
+var isResume=false;
+var isPause=false;
+// Update the count down every 1 second
+function begTimer(){
+    var theTimer = setInterval(function() {
+        if(isPause){
+            isResume=!isResume;
+            // Get todays date and time
+            var now = new Date().getTime();
+            
+            // Find the distance between now an the count down date
+            distance = countDownDate - now;
+            
+            // Time calculations for days, hours, minutes and seconds
+            var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+            
+            // Output the result in an element with id="timer"
+            var nhours= hours <10 ? "0"+hours : hours;
+            var nminutes= minutes <10 ? "0"+minutes : minutes;
+            var nseconds = seconds <10 ? "0"+seconds : seconds;
+            timer.innerHTML=nhours+":"+nminutes+":"+nseconds;
+            
+            // If the count down is over, write some text 
+            if (distance < 0 && !isRepeat) {
+                clearInterval(theTimer);
+                timer.innerHTML = "EXPIRED";
+            }else if(isRepeat){
+        
+            }
+        }
+        else if(!isPause&& isResume){
+            countDownDate=distance;
+            clearInterval(theTimer);
+        }
+    }, 1000);
+    return theTimer;
+}
+
 function startEvent(){
-    getCountdownTime();
-    startbtn.innerHTML="Pause";
+    var theTimer=begTimer();
+    if(!!theTimer){
+        clearInterval(theTimer);
+        theTimer=0;
+    }else{
+        theTimer = begTimer();
+    }
+        
+    // startbtn.innerHTML="Pause";
 
 }
-startbtn.addEventListener("click",()=>{
 
-    startEvent();
+startbtn.addEventListener("click",()=>{
+    isPause=!isPause;
+    begTimer();
+    if(isPause)
+        startbtn.innerHTML="Pause";
+    else
+        startbtn.innerHTML="Start";
 });
 
 const repeatbtn= document.getElementById("repeat") as HTMLElement;
