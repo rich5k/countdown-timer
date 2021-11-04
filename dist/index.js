@@ -167,8 +167,12 @@ var modeEmoji = document.getElementById("mode-emoji");
 var body = document.querySelector('body');
 function toggleDarkMode() {
     isDark = !isDark;
-    document.getElementById("toggleB").checked = isDark;
+    var darkModeToggle = document.getElementById("toggleB");
+    var darkModeText = document.getElementById("toggleB-text");
+    darkModeToggle.checked = isDark;
     body.classList.toggle('dark-body');
+    body.classList.toggle('bg-gradient-to-r');
+    darkModeText.classList.toggle('text-white');
 }
 let timerOverlay = document.getElementById("timer-overlay");
 let setTimerBtn = document.getElementById("set-timer");

@@ -180,8 +180,12 @@ var modeEmoji= document.getElementById("mode-emoji") as HTMLElement;
 var body = document.querySelector('body') as HTMLElement;
 function toggleDarkMode(){
     isDark=!isDark;
-    (<HTMLInputElement>document.getElementById("toggleB")).checked=isDark;
+    var darkModeToggle=(<HTMLInputElement>document.getElementById("toggleB"));
+    var darkModeText=document.getElementById("toggleB-text")as HTMLElement;
+    darkModeToggle.checked=isDark;
     body.classList.toggle('dark-body');
+    body.classList.toggle('bg-gradient-to-r')
+    darkModeText.classList.toggle('text-white');
 
 }
 
