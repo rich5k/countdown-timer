@@ -132,10 +132,10 @@ function begTimer(countDownDate:number){
         
             }
         }
-        else if(!isPause&& isResume){
-            countDownDate=distance;
-            clearInterval(theTimer);
-        }
+        // else if(!isPause&& isResume){
+        //     countDownDate=distance;
+        //     clearInterval(theTimer);
+        // }
     }, 1000);
     return theTimer;
 }
@@ -154,11 +154,19 @@ function startEvent(){
     // startbtn.innerHTML="Pause";
 
 }
-
+var count=0;
 startbtn.addEventListener("click",()=>{
     isPause=!isPause;
-    var countDownDate = getCountdownTime();
-    begTimer(countDownDate);
+    if(count>0){
+        var countDownDate = distance;
+        begTimer(countDownDate);
+        console.log(distance);
+    }
+    else{
+        var countDownDate = getCountdownTime();
+        begTimer(countDownDate);
+        count++;
+    }
     if(isPause)
         startbtn.innerHTML="Pause";
     else
@@ -181,15 +189,16 @@ repeatbtn.addEventListener("click",()=>{
 var isDark=false;
 var modeEmoji= document.getElementById("mode-emoji") as HTMLElement;
 var body = document.querySelector('body') as HTMLElement;
+var darkModeToggle=(<HTMLInputElement>document.getElementById("toggleB"));
+var darkModeTexta=document.getElementById("toggleB-texta")as HTMLElement;
+var darkModeTextb=document.getElementById("toggleB-textb")as HTMLElement;
 function toggleDarkMode(){
     isDark=!isDark;
-    var darkModeToggle=(<HTMLInputElement>document.getElementById("toggleB"));
-    var darkModeText=document.getElementById("toggleB-text")as HTMLElement;
     darkModeToggle.checked=isDark;
     body.classList.toggle('dark-body');
     body.classList.toggle('bg-gradient-to-r')
-    darkModeText.classList.toggle('text-white');
-
+    darkModeTexta.classList.toggle('text-white');
+    darkModeTextb.classList.toggle('text-white');
 }
 
 let timerOverlay= document.getElementById("timer-overlay") as HTMLElement;
@@ -207,6 +216,10 @@ startTimer.onclick= function(){
     timer.innerHTML= hourInput+":"+minsInput+":"+secsInput;
     timerOverlay.style.display="none";
 }
+
+darkModeToggle.addEventListener('click',()=>{
+    toggleDarkMode();
+})
 
 document.addEventListener('keydown',(e)=>{
     // console.log(e.key);
