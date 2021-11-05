@@ -92,12 +92,11 @@ function getCountdownTime() {
     // timer.innerHTML=countDownDate.toString();
     // timer.innerHTML=currentHours+":"+currentMinutes+":"+currentSeconds;
 }
-var countDownDate = getCountdownTime();
 var distance = 0;
 var isResume = false;
 var isPause = false;
 // Update the count down every 1 second
-function begTimer() {
+function begTimer(countDownDate) {
     var theTimer = setInterval(function () {
         if (isPause) {
             isResume = !isResume;
@@ -130,19 +129,19 @@ function begTimer() {
     return theTimer;
 }
 function startEvent() {
-    var theTimer = begTimer();
-    if (!!theTimer) {
-        clearInterval(theTimer);
-        theTimer = 0;
-    }
-    else {
-        theTimer = begTimer();
-    }
+    // var theTimer=begTimer();
+    // if(!!theTimer){
+    //     clearInterval(theTimer);
+    //     theTimer=0;
+    // }else{
+    //     theTimer = begTimer();
+    // }
     // startbtn.innerHTML="Pause";
 }
 startbtn.addEventListener("click", () => {
     isPause = !isPause;
-    begTimer();
+    var countDownDate = getCountdownTime();
+    begTimer(countDownDate);
     if (isPause)
         startbtn.innerHTML = "Pause";
     else
