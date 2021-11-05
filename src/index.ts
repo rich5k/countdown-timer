@@ -186,19 +186,26 @@ function repeatEvent(){
 repeatbtn.addEventListener("click",()=>{
     repeatEvent();
 });
-var isDark=false;
 var modeEmoji= document.getElementById("mode-emoji") as HTMLElement;
 var body = document.querySelector('body') as HTMLElement;
 var darkModeToggle=(<HTMLInputElement>document.getElementById("toggleB"));
+var isDark=darkModeToggle.checked;
 var darkModeTexta=document.getElementById("toggleB-texta")as HTMLElement;
 var darkModeTextb=document.getElementById("toggleB-textb")as HTMLElement;
 function toggleDarkMode(){
     isDark=!isDark;
     darkModeToggle.checked=isDark;
-    body.classList.toggle('dark-body');
-    body.classList.toggle('bg-gradient-to-r')
-    darkModeTexta.classList.toggle('text-white');
-    darkModeTextb.classList.toggle('text-white');
+    if(darkModeToggle.checked){
+        body.classList.add('dark-body');
+        body.classList.remove('bg-gradient-to-r')
+        darkModeTexta.classList.add('text-white');
+        darkModeTextb.classList.add('text-white');
+    }else{
+        body.classList.remove('dark-body');
+        body.classList.add('bg-gradient-to-r')
+        darkModeTexta.classList.remove('text-white');
+        darkModeTextb.classList.remove('text-white');
+    }
 }
 
 let timerOverlay= document.getElementById("timer-overlay") as HTMLElement;
@@ -236,4 +243,17 @@ document.addEventListener('keydown',(e)=>{
         timerOverlay.style.display="block";   
     }
 })
+window.onload=()=>{
+    if(darkModeToggle.checked){
+        body.classList.add('dark-body');
+        body.classList.remove('bg-gradient-to-r')
+        darkModeTexta.classList.add('text-white');
+        darkModeTextb.classList.add('text-white');
+    }else{
+        body.classList.remove('dark-body');
+        body.classList.add('bg-gradient-to-r')
+        darkModeTexta.classList.remove('text-white');
+        darkModeTextb.classList.remove('text-white');
+    }
+}
 

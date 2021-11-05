@@ -170,19 +170,27 @@ function repeatEvent() {
 repeatbtn.addEventListener("click", () => {
     repeatEvent();
 });
-var isDark = false;
 var modeEmoji = document.getElementById("mode-emoji");
 var body = document.querySelector('body');
 var darkModeToggle = document.getElementById("toggleB");
+var isDark = darkModeToggle.checked;
 var darkModeTexta = document.getElementById("toggleB-texta");
 var darkModeTextb = document.getElementById("toggleB-textb");
 function toggleDarkMode() {
     isDark = !isDark;
     darkModeToggle.checked = isDark;
-    body.classList.toggle('dark-body');
-    body.classList.toggle('bg-gradient-to-r');
-    darkModeTexta.classList.toggle('text-white');
-    darkModeTextb.classList.toggle('text-white');
+    if (darkModeToggle.checked) {
+        body.classList.add('dark-body');
+        body.classList.remove('bg-gradient-to-r');
+        darkModeTexta.classList.add('text-white');
+        darkModeTextb.classList.add('text-white');
+    }
+    else {
+        body.classList.remove('dark-body');
+        body.classList.add('bg-gradient-to-r');
+        darkModeTexta.classList.remove('text-white');
+        darkModeTextb.classList.remove('text-white');
+    }
 }
 let timerOverlay = document.getElementById("timer-overlay");
 let setTimerBtn = document.getElementById("set-timer");
@@ -215,3 +223,17 @@ document.addEventListener('keydown', (e) => {
         timerOverlay.style.display = "block";
     }
 });
+window.onload = () => {
+    if (darkModeToggle.checked) {
+        body.classList.add('dark-body');
+        body.classList.remove('bg-gradient-to-r');
+        darkModeTexta.classList.add('text-white');
+        darkModeTextb.classList.add('text-white');
+    }
+    else {
+        body.classList.remove('dark-body');
+        body.classList.add('bg-gradient-to-r');
+        darkModeTexta.classList.remove('text-white');
+        darkModeTextb.classList.remove('text-white');
+    }
+};
