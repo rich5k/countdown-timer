@@ -104,7 +104,7 @@ var isResume=false;
 var isPause=false;
 // Update the count down every 1 second
 function begTimer(countDownDate:number){
-    var state=0; //0=idle, 1=running, 2=paused, 3=resume
+    var state=0; //0=idle, 1=running, 2=paused, 3=resumed
     var theTimer = setInterval(function() {
         if(isPause){
             isResume=!isResume;
