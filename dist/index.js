@@ -97,6 +97,7 @@ var isResume = false;
 var isPause = false;
 // Update the count down every 1 second
 function begTimer(countDownDate) {
+    var state = 0; //0=idle, 1=running, 2=paused, 3=resumed
     var theTimer = setInterval(function () {
         if (isPause) {
             isResume = !isResume;
@@ -121,10 +122,10 @@ function begTimer(countDownDate) {
             else if (isRepeat) {
             }
         }
-        // else if(!isPause&& isResume){
-        //     countDownDate=distance;
-        //     clearInterval(theTimer);
-        // }
+        else if (!isPause && isResume) {
+            // countDownDate=distance;
+            clearInterval(theTimer);
+        }
     }, 1000);
     return theTimer;
 }
