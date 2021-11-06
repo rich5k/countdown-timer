@@ -18,6 +18,9 @@ input:checked ~.dot:before{
     
 }
 .hours, .minutes, .seconds{
+    height: 250px;
+    width: 350px;
+    font-size:200pt;
     background-color: transparent;
     text-align: center;
 }
