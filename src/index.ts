@@ -102,6 +102,40 @@ function getCountdownTime(){
 var distance=0;
 var isResume=false;
 var isPause=false;
+
+function IntervalTimer(callback:any, interval:any){
+    var timerId:number, startTime:any, remaining:number =0;
+    var state=0; //0=idle, 1=running, 2= paused, 3=resumed
+
+    this.pause= ()=>{
+        if(state!=1) return;
+
+        remaining =interval - (new Date().getTime()- startTime);
+        window.clearInterval(timerId);
+        state=2;
+    };
+
+    this.resume=()=>{
+        if(state!=2) return;
+
+        state=3;
+        window.setTimeout(this.timeoutCallback, remaining);
+    };
+
+    this.timeoutCallback=()=>{
+        if(state!=3) return;
+
+        callback();
+        
+        startTime = new Date().getTime();
+        timerId= window.setInterval(callback, interval);
+        state=1;
+    };
+
+    startTime= new Date().getTime();
+    timerId=window.setInterval(callback, interval);
+    state=1;
+}
 // Update the count down every 1 second
 function begTimer(countDownDate:number){
     var state=0; //0=idle, 1=running, 2=paused, 3=resumed
