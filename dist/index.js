@@ -19,144 +19,172 @@ const startbtn = document.getElementById("start");
 function preload() {
     // tickingClock= loadSound('../assets/Clock-Ticking-C-www.fesliyanstudios.com.mp3');
 }
-function getCountdownTime() {
-    var currentDate = new Date();
-    var currentYear = currentDate.getFullYear();
-    var currentDay = currentDate.getDate();
-    const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sept", "Oct", "Nov", "Dec"];
-    var currentMonth = months[currentDate.getMonth()];
-    var currentSeconds = currentDate.getSeconds();
-    var addedSecs = currentSeconds + setSecs;
-    var extraDay = 0, extraHour = 0, extraMins = 0;
-    if (addedSecs < 10) {
-        currentSeconds = "0" + addedSecs.toString();
+class TheTimer {
+    //constructor
+    constructor() {
+        this.state = 0;
+        this.timerId = 0;
+        this.startTime = 0;
+        this.remaining = 0;
     }
-    else {
-        if (addedSecs > 60) {
-            currentSeconds = addedSecs - 60;
-            extraMins++;
-            if (currentSeconds < 10) {
-                currentSeconds = "0" + currentSeconds.toString();
-            }
-            else {
-                currentSeconds = currentSeconds.toString();
-            }
+    //gets current countdown time
+    getCountdownTime() {
+        var currentDate = new Date();
+        var currentYear = currentDate.getFullYear();
+        var currentDay = currentDate.getDate();
+        const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sept", "Oct", "Nov", "Dec"];
+        var currentMonth = months[currentDate.getMonth()];
+        var currentSeconds = currentDate.getSeconds();
+        var addedSecs = currentSeconds + setSecs;
+        var extraDay = 0, extraHour = 0, extraMins = 0;
+        if (addedSecs < 10) {
+            currentSeconds = "0" + addedSecs.toString();
         }
         else {
-            currentSeconds = addedSecs.toString();
-        }
-    }
-    var currentMinutes = currentDate.getMinutes();
-    var addedMins = currentMinutes + setMins + extraMins;
-    if (addedMins < 10) {
-        currentMinutes = "0" + addedMins.toString();
-    }
-    else {
-        if (addedMins > 60) {
-            currentMinutes = addedMins - 60;
-            extraHour++;
-            if (currentMinutes < 10) {
-                currentMinutes = "0" + currentMinutes.toString();
+            if (addedSecs > 60) {
+                currentSeconds = addedSecs - 60;
+                extraMins++;
+                if (currentSeconds < 10) {
+                    currentSeconds = "0" + currentSeconds.toString();
+                }
+                else {
+                    currentSeconds = currentSeconds.toString();
+                }
             }
             else {
-                currentMinutes = currentMinutes.toString();
+                currentSeconds = addedSecs.toString();
             }
         }
-        else {
-            currentMinutes = addedMins.toString();
+        var currentMinutes = currentDate.getMinutes();
+        var addedMins = currentMinutes + setMins + extraMins;
+        if (addedMins < 10) {
+            currentMinutes = "0" + addedMins.toString();
         }
-    }
-    var currentHours = currentDate.getHours();
-    var addedHours = currentHours + setHours + extraHour;
-    if (addedHours < 10) {
-        currentHours = "0" + addedHours.toString();
-    }
-    else {
-        if (addedHours > 24) {
-            currentHours = addedHours - 24;
-            extraDay++;
-            if (currentHours < 10) {
-                currentHours = "0" + currentHours.toString();
+        else {
+            if (addedMins > 60) {
+                currentMinutes = addedMins - 60;
+                extraHour++;
+                if (currentMinutes < 10) {
+                    currentMinutes = "0" + currentMinutes.toString();
+                }
+                else {
+                    currentMinutes = currentMinutes.toString();
+                }
             }
             else {
-                currentHours = currentHours.toString();
+                currentMinutes = addedMins.toString();
             }
         }
-        else {
-            currentHours = addedHours.toString();
+        var currentHours = currentDate.getHours();
+        var addedHours = currentHours + setHours + extraHour;
+        if (addedHours < 10) {
+            currentHours = "0" + addedHours.toString();
         }
+        else {
+            if (addedHours > 24) {
+                currentHours = addedHours - 24;
+                extraDay++;
+                if (currentHours < 10) {
+                    currentHours = "0" + currentHours.toString();
+                }
+                else {
+                    currentHours = currentHours.toString();
+                }
+            }
+            else {
+                currentHours = addedHours.toString();
+            }
+        }
+        currentDay = currentDay + extraDay;
+        return new Date(`${currentMonth} ${currentDay}, ${currentYear} ${currentHours}:${currentMinutes}:${currentSeconds}`).getTime();
+        // console.log(setHours);
+        // timer.innerHTML=countDownDate.toString();
+        // timer.innerHTML=currentHours+":"+currentMinutes+":"+currentSeconds;
     }
-    currentDay = currentDay + extraDay;
-    return new Date(`${currentMonth} ${currentDay}, ${currentYear} ${currentHours}:${currentMinutes}:${currentSeconds}`).getTime();
-    // console.log(setHours);
-    // timer.innerHTML=countDownDate.toString();
-    // timer.innerHTML=currentHours+":"+currentMinutes+":"+currentSeconds;
-}
-var distance = 0;
-var isResume = false;
-var isPause = false;
-function IntervalTimer(callback, interval) {
-    var timerId, startTime, remaining = 0;
-    var state = 0; //0=idle, 1=running, 2= paused, 3=resumed
-    this.pause = () => {
-        if (state != 1)
-            return;
-        remaining = interval - (new Date().getTime() - startTime);
-        window.clearInterval(timerId);
-        state = 2;
-    };
-    this.resume = () => {
-        if (state != 2)
-            return;
-        state = 3;
-        window.setTimeout(this.timeoutCallback, remaining);
-    };
-    this.timeoutCallback = () => {
-        if (state != 3)
-            return;
-        callback();
-        startTime = new Date().getTime();
-        timerId = window.setInterval(callback, interval);
-        state = 1;
-    };
-    startTime = new Date().getTime();
-    timerId = window.setInterval(callback, interval);
-    state = 1;
-}
-// Update the count down every 1 second
-function begTimer(countDownDate) {
-    var state = 0; //0=idle, 1=running, 2=paused, 3=resumed
-    var theTimer = setInterval(function () {
-        if (isPause) {
-            isResume = !isResume;
+    startTimer() {
+        // startTime= new Date().getTime();
+        this.timerId = window.setInterval(() => {
+            var countDownDate = this.getCountdownTime();
             // Get todays date and time
             var now = new Date().getTime();
             // Find the distance between now an the count down date
-            distance = countDownDate - now;
+            var distance = countDownDate - now;
             // Time calculations for days, hours, minutes and seconds
             var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
             var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
             var seconds = Math.floor((distance % (1000 * 60)) / 1000);
-            // Output the result in an element with id="timer"
             var nhours = hours < 10 ? "0" + hours : hours;
             var nminutes = minutes < 10 ? "0" + minutes : minutes;
             var nseconds = seconds < 10 ? "0" + seconds : seconds;
             timer.innerHTML = nhours + ":" + nminutes + ":" + nseconds;
             // If the count down is over, write some text 
             if (distance < 0 && !isRepeat) {
-                clearInterval(theTimer);
+                clearInterval(this.timerId);
                 timer.innerHTML = "EXPIRED";
             }
-            else if (isRepeat) {
-            }
-        }
-        else if (!isPause && isResume) {
-            // countDownDate=distance;
-            clearInterval(theTimer);
-        }
-    }, 1000);
-    return theTimer;
+        }, 1000);
+        this.state = 1;
+    }
 }
+// var distance=0;
+// var isResume=false;
+// function IntervalTimer(callback:any, interval:any){
+//     this.pause= ()=>{
+//         if(state!=1) return;
+//         remaining =interval - (new Date().getTime()- startTime);
+//         window.clearInterval(timerId);
+//         state=2;
+//     };
+//     this.resume=()=>{
+//         if(state!=2) return;
+//         state=3;
+//         window.setTimeout(this.timeoutCallback, remaining);
+//     };
+//     this.timeoutCallback=()=>{
+//         if(state!=3) return;
+//         callback();
+//         startTime = new Date().getTime();
+//         timerId= window.setInterval(callback, interval);
+//         state=1;
+//     };
+//     startTime= new Date().getTime();
+//     timerId=window.setInterval(callback, interval);
+//     state=1;
+// }
+// // Update the count down every 1 second
+// function begTimer(countDownDate:number){
+//     var state=0; //0=idle, 1=running, 2=paused, 3=resumed
+//     var theTimer = setInterval(function() {
+//         if(isPause){
+//             isResume=!isResume;
+//             // Get todays date and time
+//             var now = new Date().getTime();
+//             // Find the distance between now an the count down date
+//             distance = countDownDate - now;
+//             // Time calculations for days, hours, minutes and seconds
+//             var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+//             var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+//             var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+//             // Output the result in an element with id="timer"
+//             var nhours= hours <10 ? "0"+hours : hours;
+//             var nminutes= minutes <10 ? "0"+minutes : minutes;
+//             var nseconds = seconds <10 ? "0"+seconds : seconds;
+//             timer.innerHTML=nhours+":"+nminutes+":"+nseconds;
+//             // If the count down is over, write some text 
+//             if (distance < 0 && !isRepeat) {
+//                 clearInterval(theTimer);
+//                 timer.innerHTML = "EXPIRED";
+//             }
+// else if(isRepeat){
+//             }
+//         }
+//         else if(!isPause&& isResume){
+//             // countDownDate=distance;
+//             clearInterval(theTimer);
+//         }
+//     }, 1000);
+//     return theTimer;
+// }
 function startEvent() {
     // var theTimer=begTimer();
     // if(!!theTimer){
@@ -168,16 +196,17 @@ function startEvent() {
     // startbtn.innerHTML="Pause";
 }
 var count = 0;
+var isPause = false;
+var timeObj = new TheTimer();
 startbtn.addEventListener("click", () => {
     isPause = !isPause;
     if (count > 0) {
-        var countDownDate = distance;
-        begTimer(countDownDate);
-        console.log(distance);
+        // var countDownDate = distance;
+        // begTimer(countDownDate);
+        console.log("Timer has already started");
     }
     else {
-        var countDownDate = getCountdownTime();
-        begTimer(countDownDate);
+        timeObj.startTimer();
         count++;
     }
     if (isPause)
