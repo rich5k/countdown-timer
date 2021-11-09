@@ -103,8 +103,8 @@ class TheTimer {
     }
     startTimer() {
         // startTime= new Date().getTime();
-        this.timerId = window.setInterval(() => {
-            var countDownDate = this.getCountdownTime();
+        var countDownDate = this.getCountdownTime();
+        this.timerId = setInterval(() => {
             // Get todays date and time
             var now = new Date().getTime();
             // Find the distance between now an the count down date

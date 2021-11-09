@@ -118,7 +118,7 @@ class TheTimer{
 
     startTimer():void{
         // startTime= new Date().getTime();
-        this.timerId=window.setInterval(()=>{
+        this.timerId=setInterval(()=>{
             var countDownDate= this.getCountdownTime();
             // Get todays date and time
             var now = new Date().getTime();
