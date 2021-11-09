@@ -118,11 +118,11 @@ class TheTimer{
 
     startTimer():void{
         // startTime= new Date().getTime();
+        var countDownDate= this.getCountdownTime();
         this.timerId=setInterval(()=>{
-            var countDownDate= this.getCountdownTime();
             // Get todays date and time
             var now = new Date().getTime();
-            
+            this.startTime=now;
             // Find the distance between now an the count down date
             var distance = countDownDate - now;
             
@@ -143,6 +143,20 @@ class TheTimer{
             }
         }, 1000);
         this.state=1;
+    }
+    pauseTimer():void{
+        if(this.state!=1) return;
+        this.remaining =new Date().getTime()- this.startTime;
+        var hours = Math.floor((this.remaining % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        var minutes = Math.floor((this.remaining % (1000 * 60 * 60)) / (1000 * 60));
+        var seconds = Math.floor((this.remaining % (1000 * 60)) / 1000);
+        var nhours= hours <10 ? "0"+hours : hours;
+        var nminutes= minutes <10 ? "0"+minutes : minutes;
+        var nseconds = seconds <10 ? "0"+seconds : seconds;
+        window.clearInterval(this.timerId);
+        this.state=2;
+        console.log(this.remaining);
+        console.log("Remaining time: "+nhours+":"+nminutes+":"+nseconds);
     }
 }
 
@@ -243,8 +257,7 @@ var timeObj= new TheTimer();
 startbtn.addEventListener("click",()=>{
     isPause=!isPause;
     if(count>0){
-        // var countDownDate = distance;
-        // begTimer(countDownDate);
+        timeObj.pauseTimer();
         console.log("Timer has already started");
     }
     else{
