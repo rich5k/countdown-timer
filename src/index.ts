@@ -116,6 +116,88 @@ class TheTimer{
         // timer.innerHTML=currentHours+":"+currentMinutes+":"+currentSeconds;
     }
 
+    updateCountdownTime():number{
+        var updateHours= parseInt(timeBits[0]);
+        var updateMins = parseInt(timeBits[1]);
+        var updateSecs = parseInt(timeBits[2]);
+        var currentDate = new Date();
+        var currentYear = currentDate.getFullYear();
+        var currentDay = currentDate.getDate();
+        const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sept", "Oct", "Nov", "Dec"];
+        var currentMonth= months[currentDate.getMonth()];
+        var currentSeconds: any=currentDate.getSeconds();
+    
+        var addedSecs= currentSeconds+updateSecs;
+        var extraDay =0, extraHour =0, extraMins =0;
+        if(addedSecs <10){
+            currentSeconds = "0"+addedSecs.toString();
+        }
+        else{
+            if(addedSecs>60){
+                currentSeconds= addedSecs-60;
+                extraMins++;
+                if(currentSeconds<10){
+                    currentSeconds = "0"+currentSeconds.toString();
+                }else{
+                    currentSeconds = currentSeconds.toString();
+                }
+            }
+            else{
+                currentSeconds = addedSecs.toString();
+            }
+        }
+    
+        var currentMinutes: any=currentDate.getMinutes();
+        var addedMins = currentMinutes+updateMins+extraMins;
+        if(addedMins <10){
+            currentMinutes = "0"+addedMins.toString();
+        }
+        else{
+            if(addedMins>60){
+                currentMinutes= addedMins-60;
+                extraHour++;
+                if(currentMinutes<10){
+                    currentMinutes = "0"+currentMinutes.toString();
+                }else{
+                    currentMinutes = currentMinutes.toString();
+                }
+            }
+            else{
+                currentMinutes = addedMins.toString();
+            }
+        }
+    
+        var currentHours: any=currentDate.getHours();
+        var addedHours = currentHours+updateHours+extraHour;
+        if(addedHours <10){
+            currentHours = "0"+addedHours.toString();
+        }
+        else{
+            if(addedHours>24){
+                currentHours= addedHours-24;
+                extraDay++;
+                if(currentHours<10){
+                    currentHours = "0"+currentHours.toString();
+                }else{
+                    currentHours = currentHours.toString();
+                }
+            }
+            else{
+                currentHours = addedHours.toString();
+            }
+        }
+    
+        currentDay= currentDay+extraDay;
+    
+        return new Date(`${currentMonth} ${currentDay}, ${currentYear} ${currentHours}:${currentMinutes}:${currentSeconds}`).getTime();
+        
+        // console.log(updateHours);
+        // timer.innerHTML=countDownDate.toString();
+    
+    
+        // timer.innerHTML=currentHours+":"+currentMinutes+":"+currentSeconds;
+    }
+
     startTimer():void{
         // startTime= new Date().getTime();
         var countDownDate= this.getCountdownTime();
@@ -158,41 +240,13 @@ class TheTimer{
         // console.log(this.remaining);
         // console.log("Remaining time: "+nhours+":"+nminutes+":"+nseconds);
     }
-    timeoutCallback():void{
-        if(this.state!=3) return;
-        var countDownDate= this.getCountdownTime();
-        // this.startTime=new Date().getTime();
-        this.timerId= setInterval(()=>{
-            // Get todays date and time
-            var now = new Date().getTime();
-            this.startTime=now;
-            // Find the distance between now an the count down date
-            var distance = countDownDate - now;
-            
-            // Time calculations for days, hours, minutes and seconds
-            var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-            var seconds = Math.floor((distance % (1000 * 60)) / 1000);
-            
-            var nhours= hours <10 ? "0"+hours : hours;
-            var nminutes= minutes <10 ? "0"+minutes : minutes;
-            var nseconds = seconds <10 ? "0"+seconds : seconds;
-            timer.innerHTML=nhours+":"+nminutes+":"+nseconds;
-                        
-            // If the count down is over, write some text 
-            if (distance < 0 && !isRepeat) {
-                clearInterval(this.timerId);
-                timer.innerHTML = "EXPIRED";
-            }
-        }, 1000);
-        this.state=1;
-    }
+    
     resumeTimer():void{
         if(this.state!=2) return;
 
         // this.state=3;
         // setTimeout(this.timeoutCallback, this.remaining)
-        var countDownDate= this.getCountdownTime();
+        var countDownDate= this.updateCountdownTime();
         // this.startTime=new Date().getTime();
         this.timerId= setInterval(()=>{
             // Get todays date and time
