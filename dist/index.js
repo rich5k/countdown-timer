@@ -102,9 +102,12 @@ class TheTimer {
         // timer.innerHTML=currentHours+":"+currentMinutes+":"+currentSeconds;
     }
     updateCountdownTime() {
-        var updateHours = parseInt(timeBits[0]);
-        var updateMins = parseInt(timeBits[1]);
-        var updateSecs = parseInt(timeBits[2]);
+        var updateTime = timer.innerHTML;
+        var updateTimeBits = updateTime.split(":");
+        var updateHours = parseInt(updateTimeBits[0]);
+        var updateMins = parseInt(updateTimeBits[1]);
+        var updateSecs = parseInt(updateTimeBits[2]);
+        console.log("Hours: " + updateHours + "Mins: " + updateMins + "Secs:" + updateSecs);
         var currentDate = new Date();
         var currentYear = currentDate.getFullYear();
         var currentDay = currentDate.getDate();
@@ -350,7 +353,7 @@ var isPause = false;
 var timeObj = new TheTimer();
 startbtn.addEventListener("click", () => {
     isPause = !isPause;
-    if (count > 0) {
+    if (count > 1) {
         if (isPause) {
             timeObj.pauseTimer();
             console.log("pause true");
@@ -360,6 +363,12 @@ startbtn.addEventListener("click", () => {
             console.log("pause false");
         }
         console.log("Timer has already started");
+    }
+    else if (count === 1) {
+        timeObj.pauseTimer();
+        console.log("pause true");
+        isPause = !isPause;
+        count++;
     }
     else {
         timeObj.startTimer();
