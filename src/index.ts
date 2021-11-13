@@ -1,9 +1,9 @@
 // import P5 from "p5";
 // import "p5/lib/addons/p5.sound";
 // const p5=P5;
-const timer = document.getElementById("timer") as HTMLElement;
-const time= timer.innerHTML;
-const timeBits=time.split(":");
+var timer = document.getElementById("timer") as HTMLElement;
+var time= timer.innerHTML;
+var timeBits=time.split(":");
 var setHours= parseInt(timeBits[0]);
 var setMins = parseInt(timeBits[1]);
 var setSecs = parseInt(timeBits[2]);
@@ -38,6 +38,11 @@ class TheTimer{
     //gets current countdown time
 
     getCountdownTime():number{
+        time= timer.innerHTML;
+        timeBits=time.split(":");
+        setHours= parseInt(timeBits[0]);
+        setMins = parseInt(timeBits[1]);
+        setSecs = parseInt(timeBits[2]);
         var currentDate = new Date();
         var currentYear = currentDate.getFullYear();
         var currentDay = currentDate.getDate();
