@@ -234,26 +234,19 @@ class TheTimer{
         if(this.state!=1) return;
         startbtn.innerHTML="Start";
         this.remaining =1000-(new Date().getTime()- this.startTime);
-        // var hours = Math.floor((this.remaining % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        // var minutes = Math.floor((this.remaining % (1000 * 60 * 60)) / (1000 * 60));
-        // var seconds = Math.floor((this.remaining % (1000 * 60)) / 1000);
-        // var nhours= hours <10 ? "0"+hours : hours;
-        // var nminutes= minutes <10 ? "0"+minutes : minutes;
-        // var nseconds = seconds <10 ? "0"+seconds : seconds;
+        
         window.clearInterval(this.timerId);
         this.state=2;
-        // console.log(this.remaining);
-        // console.log("Remaining time: "+nhours+":"+nminutes+":"+nseconds);
+        
     }
     
     resumeTimer():void{
         if(this.state!=2) return;
 
-        // this.state=3;
-        // setTimeout(this.timeoutCallback, this.remaining)
+        
         startbtn.innerHTML="Pause";
         var countDownDate= this.updateCountdownTime();
-        // this.startTime=new Date().getTime();
+        
         this.timerId= setInterval(()=>{
             // Get todays date and time
             var now = new Date().getTime();
@@ -282,11 +275,10 @@ class TheTimer{
     resetTimer():void{
         if(this.state!=2) return;
 
-        // this.state=3;
-        // setTimeout(this.timeoutCallback, this.remaining)
+        
         startbtn.innerHTML="Pause";
         var countDownDate= this.getCountdownTime();
-        // this.startTime=new Date().getTime();
+        
         this.timerId= setInterval(()=>{
             // Get todays date and time
             var now = new Date().getTime();
@@ -316,99 +308,12 @@ class TheTimer{
 
 
 
-// var distance=0;
-// var isResume=false;
 
 
-// function IntervalTimer(callback:any, interval:any){
-    
-//     this.pause= ()=>{
-//         if(state!=1) return;
-
-//         remaining =interval - (new Date().getTime()- startTime);
-//         window.clearInterval(timerId);
-//         state=2;
-//     };
-
-//     this.resume=()=>{
-//         if(state!=2) return;
-
-//         state=3;
-//         window.setTimeout(this.timeoutCallback, remaining);
-//     };
-
-//     this.timeoutCallback=()=>{
-//         if(state!=3) return;
-
-//         callback();
-        
-//         startTime = new Date().getTime();
-//         timerId= window.setInterval(callback, interval);
-//         state=1;
-//     };
-
-//     startTime= new Date().getTime();
-//     timerId=window.setInterval(callback, interval);
-//     state=1;
-// }
-// // Update the count down every 1 second
-// function begTimer(countDownDate:number){
-//     var state=0; //0=idle, 1=running, 2=paused, 3=resumed
-//     var theTimer = setInterval(function() {
-//         if(isPause){
-//             isResume=!isResume;
-//             // Get todays date and time
-//             var now = new Date().getTime();
-            
-//             // Find the distance between now an the count down date
-//             distance = countDownDate - now;
-            
-//             // Time calculations for days, hours, minutes and seconds
-//             var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-//             var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-//             var seconds = Math.floor((distance % (1000 * 60)) / 1000);
-            
-//             // Output the result in an element with id="timer"
-//             var nhours= hours <10 ? "0"+hours : hours;
-//             var nminutes= minutes <10 ? "0"+minutes : minutes;
-//             var nseconds = seconds <10 ? "0"+seconds : seconds;
-//             timer.innerHTML=nhours+":"+nminutes+":"+nseconds;
-            
-//             // If the count down is over, write some text 
-//             if (distance < 0 && !isRepeat) {
-//                 clearInterval(theTimer);
-//                 timer.innerHTML = "EXPIRED";
-//             }
-            // else if(isRepeat){
-        
-//             }
-//         }
-//         else if(!isPause&& isResume){
-//             // countDownDate=distance;
-//             clearInterval(theTimer);
-//         }
-//     }, 1000);
-//     return theTimer;
-// }
-
-function startEvent(){
-    
-    // var theTimer=begTimer();
-
-    // if(!!theTimer){
-    //     clearInterval(theTimer);
-    //     theTimer=0;
-    // }else{
-    //     theTimer = begTimer();
-    // }
-        
-    // startbtn.innerHTML="Pause";
-
-}
 var count=0;
 var isPause=false;
 var timeObj= new TheTimer();
-startbtn.addEventListener("click",()=>{
+function startEvent(){
     isPause=!isPause;
     if(count>1){
         if(isPause){
@@ -432,10 +337,12 @@ startbtn.addEventListener("click",()=>{
         count++;
     }
     
-    // if(isPause)
-    //     startbtn.innerHTML="Pause";
-    // else
-    //     startbtn.innerHTML="Start";
+    
+
+}
+startbtn.addEventListener("click",()=>{
+    startEvent();
+    
 });
 
 const repeatbtn= document.getElementById("repeat") as HTMLElement;
