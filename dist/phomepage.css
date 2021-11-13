@@ -1,3 +1,6 @@
 body{
     background: #A2D2FF;
 }
+.tiles{
+    cursor: pointer;
+}
