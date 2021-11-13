@@ -182,6 +182,7 @@ class TheTimer {
     }
     startTimer() {
         // startTime= new Date().getTime();
+        startbtn.innerHTML = "Pause";
         var countDownDate = this.getCountdownTime();
         this.timerId = setInterval(() => {
             // Get todays date and time
@@ -208,6 +209,7 @@ class TheTimer {
     pauseTimer() {
         if (this.state != 1)
             return;
+        startbtn.innerHTML = "Start";
         this.remaining = 1000 - (new Date().getTime() - this.startTime);
         // var hours = Math.floor((this.remaining % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
         // var minutes = Math.floor((this.remaining % (1000 * 60 * 60)) / (1000 * 60));
@@ -225,6 +227,7 @@ class TheTimer {
             return;
         // this.state=3;
         // setTimeout(this.timeoutCallback, this.remaining)
+        startbtn.innerHTML = "Pause";
         var countDownDate = this.updateCountdownTime();
         // this.startTime=new Date().getTime();
         this.timerId = setInterval(() => {
@@ -254,6 +257,7 @@ class TheTimer {
             return;
         // this.state=3;
         // setTimeout(this.timeoutCallback, this.remaining)
+        startbtn.innerHTML = "Pause";
         var countDownDate = this.getCountdownTime();
         // this.startTime=new Date().getTime();
         this.timerId = setInterval(() => {
@@ -374,10 +378,10 @@ startbtn.addEventListener("click", () => {
         timeObj.startTimer();
         count++;
     }
-    if (isPause)
-        startbtn.innerHTML = "Pause";
-    else
-        startbtn.innerHTML = "Start";
+    // if(isPause)
+    //     startbtn.innerHTML="Pause";
+    // else
+    //     startbtn.innerHTML="Start";
 });
 const repeatbtn = document.getElementById("repeat");
 const repeatMarker = document.getElementById("repeat-marker");
