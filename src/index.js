@@ -1,5 +1,7 @@
-import "p5/lib/addons/p5.sound";
-// document.moduleScripts.enabled=true;
+"use strict";
+exports.__esModule = true;
+require("p5/lib/addons/p5.sound");
+// const p5=P5;
 var timer = document.getElementById("timer");
 var time = timer.innerHTML;
 var timeBits = time.split(":");
@@ -11,29 +13,29 @@ document.getElementById("hour-input").value = setHours < 10 ? "0" + setHours : s
 document.getElementById("minutes-input").value = setMins < 10 ? "0" + setMins : setMins.toString();
 document.getElementById("seconds-input").value = setSecs < 10 ? "0" + setSecs : setSecs.toString();
 var isRepeat = false;
-const startbtn = document.getElementById("start");
+var startbtn = document.getElementById("start");
 // let tickingClock;
 // let timeUpBeeper;
-const timerSound = (p) => {
-    let tickingClock;
-    p.preload = () => {
-        const loadSound = (path) => p.loadSound(path);
+var timerSound = function (p) {
+    var tickingClock;
+    p.preload = function () {
+        var loadSound = function (path) { return p.loadSound(path); };
         tickingClock = loadSound('../assets/Clock-Ticking-C-www.fesliyanstudios.com.mp3');
     };
-    p.setup = () => {
+    p.setup = function () {
         tickingClock.play();
     };
 };
-class TheTimer {
+var TheTimer = /** @class */ (function () {
     //constructor
-    constructor() {
+    function TheTimer() {
         this.state = 0;
         this.timerId = 0;
         this.startTime = 0;
         this.remaining = 0;
     }
     //gets current countdown time
-    getCountdownTime() {
+    TheTimer.prototype.getCountdownTime = function () {
         time = timer.innerHTML;
         timeBits = time.split(":");
         setHours = parseInt(timeBits[0]);
@@ -42,7 +44,7 @@ class TheTimer {
         var currentDate = new Date();
         var currentYear = currentDate.getFullYear();
         var currentDay = currentDate.getDate();
-        const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sept", "Oct", "Nov", "Dec"];
+        var months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sept", "Oct", "Nov", "Dec"];
         var currentMonth = months[currentDate.getMonth()];
         var currentSeconds = currentDate.getSeconds();
         var addedSecs = currentSeconds + setSecs;
@@ -106,12 +108,12 @@ class TheTimer {
             }
         }
         currentDay = currentDay + extraDay;
-        return new Date(`${currentMonth} ${currentDay}, ${currentYear} ${currentHours}:${currentMinutes}:${currentSeconds}`).getTime();
+        return new Date(currentMonth + " " + currentDay + ", " + currentYear + " " + currentHours + ":" + currentMinutes + ":" + currentSeconds).getTime();
         // console.log(setHours);
         // timer.innerHTML=countDownDate.toString();
         // timer.innerHTML=currentHours+":"+currentMinutes+":"+currentSeconds;
-    }
-    updateCountdownTime() {
+    };
+    TheTimer.prototype.updateCountdownTime = function () {
         var updateTime = timer.innerHTML;
         var updateTimeBits = updateTime.split(":");
         var updateHours = parseInt(updateTimeBits[0]);
@@ -121,7 +123,7 @@ class TheTimer {
         var currentDate = new Date();
         var currentYear = currentDate.getFullYear();
         var currentDay = currentDate.getDate();
-        const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sept", "Oct", "Nov", "Dec"];
+        var months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sept", "Oct", "Nov", "Dec"];
         var currentMonth = months[currentDate.getMonth()];
         var currentSeconds = currentDate.getSeconds();
         var addedSecs = currentSeconds + updateSecs;
@@ -185,19 +187,20 @@ class TheTimer {
             }
         }
         currentDay = currentDay + extraDay;
-        return new Date(`${currentMonth} ${currentDay}, ${currentYear} ${currentHours}:${currentMinutes}:${currentSeconds}`).getTime();
+        return new Date(currentMonth + " " + currentDay + ", " + currentYear + " " + currentHours + ":" + currentMinutes + ":" + currentSeconds).getTime();
         // console.log(updateHours);
         // timer.innerHTML=countDownDate.toString();
         // timer.innerHTML=currentHours+":"+currentMinutes+":"+currentSeconds;
-    }
-    startTimer() {
+    };
+    TheTimer.prototype.startTimer = function () {
+        var _this = this;
         // startTime= new Date().getTime();
         startbtn.innerHTML = "Pause";
         var countDownDate = this.getCountdownTime();
-        this.timerId = setInterval(() => {
+        this.timerId = setInterval(function () {
             // Get todays date and time
             var now = new Date().getTime();
-            this.startTime = now;
+            _this.startTime = now;
             // Find the distance between now an the count down date
             var distance = countDownDate - now;
             // Time calculations for days, hours, minutes and seconds
@@ -213,29 +216,30 @@ class TheTimer {
             }
             // If the count down is over, write some text 
             if (distance < 0 && !isRepeat) {
-                clearInterval(this.timerId);
+                clearInterval(_this.timerId);
                 timer.innerHTML = "EXPIRED";
             }
         }, 1000);
         this.state = 1;
-    }
-    pauseTimer() {
+    };
+    TheTimer.prototype.pauseTimer = function () {
         if (this.state != 1)
             return;
         startbtn.innerHTML = "Start";
         this.remaining = 1000 - (new Date().getTime() - this.startTime);
         window.clearInterval(this.timerId);
         this.state = 2;
-    }
-    resumeTimer() {
+    };
+    TheTimer.prototype.resumeTimer = function () {
+        var _this = this;
         if (this.state != 2)
             return;
         startbtn.innerHTML = "Pause";
         var countDownDate = this.updateCountdownTime();
-        this.timerId = setInterval(() => {
+        this.timerId = setInterval(function () {
             // Get todays date and time
             var now = new Date().getTime();
-            this.startTime = now;
+            _this.startTime = now;
             // Find the distance between now an the count down date
             var distance = countDownDate - now;
             // Time calculations for days, hours, minutes and seconds
@@ -248,21 +252,22 @@ class TheTimer {
             timer.innerHTML = nhours + ":" + nminutes + ":" + nseconds;
             // If the count down is over, write some text 
             if (distance < 0 && !isRepeat) {
-                clearInterval(this.timerId);
+                clearInterval(_this.timerId);
                 timer.innerHTML = "EXPIRED";
             }
         }, 1000);
         this.state = 1;
-    }
-    resetTimer() {
+    };
+    TheTimer.prototype.resetTimer = function () {
+        var _this = this;
         if (this.state != 2)
             return;
         startbtn.innerHTML = "Pause";
         var countDownDate = this.getCountdownTime();
-        this.timerId = setInterval(() => {
+        this.timerId = setInterval(function () {
             // Get todays date and time
             var now = new Date().getTime();
-            this.startTime = now;
+            _this.startTime = now;
             // Find the distance between now an the count down date
             var distance = countDownDate - now;
             // Time calculations for days, hours, minutes and seconds
@@ -275,13 +280,14 @@ class TheTimer {
             timer.innerHTML = nhours + ":" + nminutes + ":" + nseconds;
             // If the count down is over, write some text 
             if (distance < 0 && !isRepeat) {
-                clearInterval(this.timerId);
+                clearInterval(_this.timerId);
                 timer.innerHTML = "EXPIRED";
             }
         }, 1000);
         this.state = 1;
-    }
-}
+    };
+    return TheTimer;
+}());
 var count = 0;
 var isPause = false;
 var timeObj = new TheTimer();
@@ -309,11 +315,11 @@ function startEvent() {
         count++;
     }
 }
-startbtn.addEventListener("click", () => {
+startbtn.addEventListener("click", function () {
     startEvent();
 });
-const repeatbtn = document.getElementById("repeat");
-const repeatMarker = document.getElementById("repeat-marker");
+var repeatbtn = document.getElementById("repeat");
+var repeatMarker = document.getElementById("repeat-marker");
 function repeatEvent() {
     isRepeat = !isRepeat;
     if (isRepeat) {
@@ -323,7 +329,7 @@ function repeatEvent() {
         repeatMarker.innerHTML = "";
     }
 }
-repeatbtn.addEventListener("click", () => {
+repeatbtn.addEventListener("click", function () {
     repeatEvent();
 });
 var modeEmoji = document.getElementById("mode-emoji");
@@ -348,23 +354,23 @@ function toggleDarkMode() {
         darkModeTextb.classList.remove('text-white');
     }
 }
-let timerOverlay = document.getElementById("timer-overlay");
-let setTimerBtn = document.getElementById("set-timer");
-let startTimer = document.getElementById("startTimer");
+var timerOverlay = document.getElementById("timer-overlay");
+var setTimerBtn = document.getElementById("set-timer");
+var startTimer = document.getElementById("startTimer");
 setTimerBtn.onclick = function () {
     timerOverlay.style.display = "block";
 };
 startTimer.onclick = function () {
-    let hourInput = document.getElementById("hour-input").value;
-    let minsInput = document.getElementById("minutes-input").value;
-    let secsInput = document.getElementById("seconds-input").value;
+    var hourInput = document.getElementById("hour-input").value;
+    var minsInput = document.getElementById("minutes-input").value;
+    var secsInput = document.getElementById("seconds-input").value;
     timer.innerHTML = hourInput + ":" + minsInput + ":" + secsInput;
     timerOverlay.style.display = "none";
 };
-darkModeToggle.addEventListener('click', () => {
+darkModeToggle.addEventListener('click', function () {
     toggleDarkMode();
 });
-document.addEventListener('keydown', (e) => {
+document.addEventListener('keydown', function (e) {
     // console.log(e.key);
     if (e.key === "R") {
         repeatEvent();
@@ -379,7 +385,7 @@ document.addEventListener('keydown', (e) => {
         timerOverlay.style.display = "block";
     }
 });
-window.onload = () => {
+window.onload = function () {
     if (darkModeToggle.checked) {
         body.classList.add('dark-body');
         body.classList.remove('bg-gradient-to-r');

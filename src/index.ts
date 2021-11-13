@@ -1,6 +1,6 @@
-// import P5 from "p5";
-// import "p5/lib/addons/p5.sound";
-// const p5=P5;
+import * as p5 from "p5";
+import "p5/lib/addons/p5.sound";
+// document.moduleScripts.enabled=true;
 var timer = document.getElementById("timer") as HTMLElement;
 var time= timer.innerHTML;
 var timeBits=time.split(":");
@@ -16,8 +16,15 @@ var isRepeat=false;
 const startbtn= document.getElementById("start") as HTMLElement;
 // let tickingClock;
 // let timeUpBeeper;
-function preload(){
-    // tickingClock= loadSound('../assets/Clock-Ticking-C-www.fesliyanstudios.com.mp3');
+const timerSound=(p:p5)=>{
+    let tickingClock: p5.SoundFile;
+    p.preload=()=>{
+        const loadSound=(path:string)=> ((p as any) as p5.SoundFile).loadSound(path);
+        tickingClock= loadSound('../assets/Clock-Ticking-C-www.fesliyanstudios.com.mp3');
+    }
+    p.setup=()=>{
+        tickingClock.play();
+    }
 }
 
 class TheTimer{
@@ -226,7 +233,10 @@ class TheTimer{
             var nminutes= minutes <10 ? "0"+minutes : minutes;
             var nseconds = seconds <10 ? "0"+seconds : seconds;
             timer.innerHTML=nhours+":"+nminutes+":"+nseconds;
-                        
+              
+            if(distance<=10){
+                timerSound;
+            }
             // If the count down is over, write some text 
             if (distance < 0 && !isRepeat) {
                 clearInterval(this.timerId);
