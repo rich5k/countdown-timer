@@ -4,3 +4,7 @@ body{
 .tiles{
     cursor: pointer;
 }
+
+.selected-tile{
+    background: #FEE440;
+}
