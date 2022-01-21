@@ -1,0 +1,29 @@
+{
+  "name": "countdown-timer",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "autoprefixer": "^10.3.7",
+    "gsap": "^3.9.1",
+    "p5": "^1.4.0",
+    "postcss": "^8.3.11",
+    "tailwindcss": "^2.2.17",
+    "tspath": "^1.3.7",
+    "typescript": "^4.4.4"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rich5k/countdown-timer.git"
+  },
+  "author": "Richard Anatsui",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rich5k/countdown-timer/issues"
+  },
+  "homepage": "https://github.com/rich5k/countdown-timer#readme"
+}

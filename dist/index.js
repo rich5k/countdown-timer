@@ -1,4 +1,6 @@
-import "p5/lib/addons/p5.sound";
+"use strict";
+// import * as p5 from "p5";
+// import "p5/lib/addons/p5.sound";
 // document.moduleScripts.enabled=true;
 var timer = document.getElementById("timer");
 var time = timer.innerHTML;
@@ -14,16 +16,16 @@ var isRepeat = false;
 const startbtn = document.getElementById("start");
 // let tickingClock;
 // let timeUpBeeper;
-const timerSound = (p) => {
-    let tickingClock;
-    p.preload = () => {
-        const loadSound = (path) => p.loadSound(path);
-        tickingClock = loadSound('../assets/Clock-Ticking-C-www.fesliyanstudios.com.mp3');
-    };
-    p.setup = () => {
-        tickingClock.play();
-    };
-};
+// const timerSound=(p:p5)=>{
+//     let tickingClock: p5.SoundFile;
+//     p.preload=()=>{
+//         const loadSound=(path:string)=> ((p as any) as p5.SoundFile).loadSound(path);
+//         tickingClock= loadSound('../assets/Clock-Ticking-C-www.fesliyanstudios.com.mp3');
+//     }
+//     p.setup=()=>{
+//         tickingClock.play();
+//     }
+// }
 class TheTimer {
     //constructor
     constructor() {
@@ -209,7 +211,7 @@ class TheTimer {
             var nseconds = seconds < 10 ? "0" + seconds : seconds;
             timer.innerHTML = nhours + ":" + nminutes + ":" + nseconds;
             if (distance <= 10) {
-                timerSound;
+                // timerSound;
             }
             // If the count down is over, write some text 
             if (distance < 0 && !isRepeat) {

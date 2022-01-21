@@ -19,11 +19,11 @@
             <div class="mt-10 text-5xl text-center">Pick a pomodoro of your choice</div>
             <div class="grid grid-cols-2 mt-10">
 
-                <div id="pomo-25" class="tiles text-center bg-white m-2 rounded-lg p-12">
+                <div id="pomo-25" class="tiles text-center bg-white shadow-xl m-2 rounded-lg p-12">
                     25/5 <br>
                     Work for 25 mins and take 5 mins break
                 </div>
-                <div id="pomo-50" class="tiles text-center bg-white m-2 rounded-lg p-12">
+                <div id="pomo-50" class="tiles text-center bg-white shadow-xl m-2 rounded-lg p-12">
                     50/10 <br>
                     Work for 50 mins and take 10 mins break
                 </div>
@@ -32,19 +32,25 @@
                 Sessions
             </div>
             <div class="grid grid-cols-2">
-                <div id="sess-2" class="tiles text-center bg-white m-2 rounded-lg p-12">
+                <div id="sess-2" class="tiles text-center bg-white shadow-xl m-2 rounded-lg p-12">
                     2 <br>
                     Two Pomodoro Sessions
                 </div>
-                <div id="sess-4" class="tiles text-center bg-white m-2 rounded-lg p-12">
+                <div id="sess-4" class="tiles text-center bg-white m-2 shadow-xl rounded-lg p-12">
                     4 <br>
                     Four Pomodoro Sessions
                 </div>
             </div>
-
+            <div class="mt-4 text-center text-2xl">
+                <button class="bg-green-400 text-white p-2 shadow-xl rounded-lg">Done</button>
+            </div>
         </div>
         <div></div>
     </div>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
     <script src="./pomodoro.js"></script>
+    <script src="./pomodoro-animate.js"></script>
+    <!-- <script src="./pomodoro.js" type="module"></script> -->
 </body>
 </html>
