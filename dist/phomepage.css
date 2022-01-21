@@ -8,6 +8,6 @@ body{
 .selected-tile{
     background: #FEE440;
 }
-.pomodoro-timer{
+.hide-timer{
     display:none;
 }
