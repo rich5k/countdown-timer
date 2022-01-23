@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="phomepage.css">
 </head>
 <body>
-    <div class="grid grid-cols-3 mt-20 pomodoro-setting">
+    <div class="grid grid-cols-3 mt-20" id="pomodoro-setting">
         <div></div>
         <div>
             <div class="text-7xl text-center">
@@ -47,137 +47,137 @@
         </div>
         <div></div>
 
-        <div class="container mx-auto my-8 hide-timer" id="pomodoro-timer">
+        
+    </div>
+    <div class="container mx-auto my-8 hide-timer" id="pomodoro-timer">
 
-            <!-- Top Section (Pomodoro button and Dark/Light mode button) -->
-            <div class="top-section grid grid-cols-3 grid-flow-col">
-                <div>
-                    <button class="focus:outline-black bg-white text-blue-300 p-2 shadow-xl rounded-full px-4">Pomodoro </button>
+        <!-- Top Section (Pomodoro button and Dark/Light mode button) -->
+        <div class="top-section grid grid-cols-3 grid-flow-col">
+            <div>
+                <button class="focus:outline-black bg-white text-blue-300 p-2 shadow-xl rounded-full px-4">Countdown Timer</button>
+
+            </div>
+
+            <div></div>
+            <div>
+                    <label for="toggleB" class="flex items-center cursor-pointer">
+                        <!-- label -->
+                        <div id="toggleB-texta" class="mr-3 font-medium">
+                            Light 
+                        </div>
+                        <!-- toggle -->
+                        <div class="relative">
+                            <!-- input -->
+                            <input type="checkbox" id="toggleB" class="sr-only">
+                            <!-- line -->
+                            <div class="block bg-gray-600 w-14 h-8 rounded-full"></div>
+                            <!-- dot -->
+                            <div class="dot absolute left-1 top-1 bg-white w-6 h-6 rounded-full transition px-0.5" id="mode-emoji"></div>
+                        </div>
+                        <!-- label -->
+                        <div id="toggleB-textb" class="ml-3 font-medium">
+                            Dark
+                        </div>
+                    </label>
+                        
+
+            </div>
+            
     
+        </div>
+        <!-- Timer -->
+        <div class="timer-section my-16 grid grid-cols-3 grid-flow-col">
+            <div></div>
+            <div>
+                <!-- overlay effect for set timer -->
+                <div id="timer-overlay" class="fixed hidden inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full">
+                    <div class="top-40 relative mx-auto grid grid-cols-6">
+                        <div></div>
+                        <div class="mt-3 text-center bg-white col-span-4 flex  py-16 rounded-lg">
+
+                            <form action="#">
+                                <div class="pl-24 mb-4">
+                                    <!-- <div></div> -->
+                                    <div class="flex flex-row">
+    
+                                        <label class="label-with-input flex flex-col">
+                                            <input id="hour-input" class="hours" size="1" type="text" maxlength="2" pattern="[0-9]">
+                                            <span class="input-label">
+                                                <span class="input-label-text">
+                                                    Hours
+                                                </span>
+                                            </span>
+                                        </label>
+                                        <span class="divider mt-10 text-9xl">
+                                            :
+                                        </span>
+                                        <label class="label-with-input flex flex-col">
+                                            <input id="minutes-input" class="minutes" size="1" type="text" maxlength="2" pattern="[0-9]">
+                                            <span class="input-label">
+                                                <span class="input-label-text">
+                                                    Minutes
+                                                </span>
+                                            </span>
+                                        </label>
+                                        <span class="divider mt-10 text-9xl">
+                                            :
+                                        </span>
+                                        <label class="label-with-input flex flex-col">
+                                            <input id="seconds-input" class="seconds" size="1" type="text" maxlength="2" pattern="[0-9]">
+                                            <span class="input-label">
+                                                <span class="input-label-text">
+                                                    Seconds
+                                                </span>
+                                            </span>
+                                        </label>
+                                    </div>
+                                    
+                                </div>
+                                <button id="startTimer" type="submit" class="focus:outline-black bg-blue-300 text-white p-2 shadow-xl rounded-full px-4">Start</button>
+                            </form>
+                        </div>
+                        <div></div>
+                    </div>
                 </div>
-    
-                <div></div>
-                <div>
-                        <label for="toggleB" class="flex items-center cursor-pointer">
-                            <!-- label -->
-                            <div id="toggleB-texta" class="mr-3 font-medium">
-                                Light 
-                            </div>
-                            <!-- toggle -->
-                            <div class="relative">
-                                <!-- input -->
-                                <input type="checkbox" id="toggleB" class="sr-only">
-                                <!-- line -->
-                                <div class="block bg-gray-600 w-14 h-8 rounded-full"></div>
-                                <!-- dot -->
-                                <div class="dot absolute left-1 top-1 bg-white w-6 h-6 rounded-full transition px-0.5" id="mode-emoji"></div>
-                            </div>
-                            <!-- label -->
-                            <div id="toggleB-textb" class="ml-3 font-medium">
-                                Dark
-                            </div>
-                        </label>
-                            
-    
+                <h1 class="text-blue-500 text-9xl" id="timer">00:50:00</h1>
+                
+                <div class="grid grid-cols-3 grid-flow-col my-8">
+                    <div>
+                        <button class="focus:outline-black bg-blue-300 text-white p-2 shadow-xl rounded-full px-4" id="repeat"> Repeat </button>
+
+                    </div>
+                    <div>
+                        <button class="focus:outline-black bg-blue-300 text-white p-2 shadow-xl rounded-full px-4" id="start"> Start </button>
+
+                    </div>
+                    <div>
+                        <button class="focus:outline-black bg-blue-300 text-white p-2 shadow-xl rounded-full px-4" id="set-timer"> Set Timer </button>
+
+                    </div>
+
                 </div>
                 
-        
             </div>
-            <!-- Timer -->
-            <div class="timer-section my-16 grid grid-cols-3 grid-flow-col">
-                <div></div>
-                <div>
-                    <!-- overlay effect for set timer -->
-                    <div id="timer-overlay" class="fixed hidden inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full">
-                        <div class="top-40 relative mx-auto grid grid-cols-6">
-                            <div></div>
-                            <div class="mt-3 text-center bg-white col-span-4 flex  py-16 rounded-lg">
+            <div><span class="text-blue-500 text-sm" id="repeat-marker"></span></div>
+              
     
-                                <form action="#">
-                                    <div class="pl-24 mb-4">
-                                        <!-- <div></div> -->
-                                        <div class="flex flex-row">
-        
-                                            <label class="label-with-input flex flex-col">
-                                                <input id="hour-input" class="hours" size="1" type="text" maxlength="2" pattern="[0-9]">
-                                                <span class="input-label">
-                                                    <span class="input-label-text">
-                                                        Hours
-                                                    </span>
-                                                </span>
-                                            </label>
-                                            <span class="divider mt-10 text-9xl">
-                                                :
-                                            </span>
-                                            <label class="label-with-input flex flex-col">
-                                                <input id="minutes-input" class="minutes" size="1" type="text" maxlength="2" pattern="[0-9]">
-                                                <span class="input-label">
-                                                    <span class="input-label-text">
-                                                        Minutes
-                                                    </span>
-                                                </span>
-                                            </label>
-                                            <span class="divider mt-10 text-9xl">
-                                                :
-                                            </span>
-                                            <label class="label-with-input flex flex-col">
-                                                <input id="seconds-input" class="seconds" size="1" type="text" maxlength="2" pattern="[0-9]">
-                                                <span class="input-label">
-                                                    <span class="input-label-text">
-                                                        Seconds
-                                                    </span>
-                                                </span>
-                                            </label>
-                                        </div>
-                                        
-                                    </div>
-                                    <button id="startTimer" type="submit" class="focus:outline-black bg-blue-300 text-white p-2 shadow-xl rounded-full px-4">Start</button>
-                                </form>
-                            </div>
-                            <div></div>
-                        </div>
-                    </div>
-                    <h1 class="text-blue-500 text-9xl" id="timer">00:50:00</h1>
-                    
-                    <div class="grid grid-cols-3 grid-flow-col my-8">
-                        <div>
-                            <button class="focus:outline-black bg-blue-300 text-white p-2 shadow-xl rounded-full px-4" id="repeat"> Repeat </button>
-    
-                        </div>
-                        <div>
-                            <button class="focus:outline-black bg-blue-300 text-white p-2 shadow-xl rounded-full px-4" id="start"> Start </button>
-    
-                        </div>
-                        <div>
-                            <button class="focus:outline-black bg-blue-300 text-white p-2 shadow-xl rounded-full px-4" id="set-timer"> Set Timer </button>
-    
-                        </div>
-    
-                    </div>
-                    
-                </div>
-                <div><span class="text-blue-500 text-sm" id="repeat-marker"></span></div>
-                  
-        
-            </div>
-            <!-- Shortcuts -->
-            <div class="grid grid-cols-5 grid-flow-col">
-                <div class="shortcuts-section p-4 bg-blue-300 rounded-lg">
-                    <h4 class="text-lg font-bold my-4">Shortcuts</h4>
-                    <strong class="">Start/Pause</strong> 
-                    <span class="bg-white p-2 rounded-md">spacebar</span><br> <br>
-                    <strong class="">Light/Dark</strong> 
-                    <span class="bg-white p-2 rounded-md">L</span>  <br> <br>
-                    <strong class="">Toggle Repeat</strong>
-                    <span class="bg-white p-2 rounded-md">R</span>  <br> <br>
-                    <strong class="">Set Timer</strong>
-                    <span class="bg-white p-2 rounded-md">S</span>  <br> <br>
-            
-                </div>
-    
-            </div>
         </div>
+        <!-- Shortcuts -->
+        <div class="grid grid-cols-5 grid-flow-col">
+            <div class="shortcuts-section p-4 bg-blue-300 rounded-lg">
+                <h4 class="text-lg font-bold my-4">Shortcuts</h4>
+                <strong class="">Start/Pause</strong> 
+                <span class="bg-white p-2 rounded-md">spacebar</span><br> <br>
+                <strong class="">Light/Dark</strong> 
+                <span class="bg-white p-2 rounded-md">L</span>  <br> <br>
+                <strong class="">Toggle Repeat</strong>
+                <span class="bg-white p-2 rounded-md">R</span>  <br> <br>
+                <strong class="">Set Timer</strong>
+                <span class="bg-white p-2 rounded-md">S</span>  <br> <br>
+        
+            </div>
 
+        </div>
     </div>
     
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
