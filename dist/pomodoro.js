@@ -4,7 +4,7 @@ var pomo50 = document.getElementById("pomo-50");
 var sess2 = document.getElementById("sess-2");
 var sess4 = document.getElementById("sess-4");
 var sessions = document.getElementById("sessions");
-console.log(pomo25);
+var timer = document.getElementById("timer");
 pomo25.addEventListener('click', () => {
     pomo25.classList.toggle('selected-tile');
     pomo50.classList.remove('selected-tile');
@@ -30,4 +30,10 @@ if (localStorage.getItem("sess") == "2") {
 }
 else {
     sessions.innerHTML = "<li>P1: <em>not yet</em></li><li>P2: <em>not yet</em></li><li>P3: <em>not yet</em></li><li>P4: <em>not yet</em></li>";
+}
+if (localStorage.getItem("pomo") == "50") {
+    timer.innerHTML = "00:50:00";
+}
+else {
+    timer.innerHTML = "00:25:00";
 }
