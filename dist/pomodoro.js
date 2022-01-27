@@ -26,8 +26,9 @@ sess4.addEventListener('click', () => {
     sess2.classList.remove('selected-tile');
     localStorage.setItem("sess", "4");
 });
-var sessValue = +localStorage["sess"];
-var pomoValue = +localStorage["pomo"];
+var sessValue = Number(localStorage.getItem("sess"));
+var pomoValue = Number(localStorage.getItem("pomo"));
+console.log(sessValue);
 if (sessValue == 2) {
     sessions.innerHTML = "<li>P1: <em>not yet</em></li><li>P2: <em>not yet</em></li>";
 }
