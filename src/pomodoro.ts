@@ -46,3 +46,46 @@ else{
     timer.innerHTML="00:25:00";
 }
 
+var modeEmoji= document.getElementById("mode-emoji") as HTMLElement;
+var body = document.querySelector('body') as HTMLElement;
+var darkModeToggle=(<HTMLInputElement>document.getElementById("toggleB"));
+var isDark=darkModeToggle.checked;
+var darkModeTexta=document.getElementById("toggleB-texta")as HTMLElement;
+var darkModeTextb=document.getElementById("toggleB-textb")as HTMLElement;
+var sessionText=document.getElementById("sessions-text")as HTMLElement;
+function toggleDarkmode(){
+    isDark=!isDark;
+    darkModeToggle.checked=isDark;
+    if(darkModeToggle.checked){
+        body.classList.add('dark-body');
+        // body.classList.remove('bg-gradient-to-r')
+        darkModeTexta.classList.add('text-white');
+        darkModeTextb.classList.add('text-white');
+        sessionText.classList.add('text-white');
+    }else{
+        body.classList.remove('dark-body');
+        // body.classList.add('bg-gradient-to-r')
+        darkModeTexta.classList.remove('text-white');
+        darkModeTextb.classList.remove('text-white');
+        sessionText.classList.remove('text-white');
+    }
+}
+
+darkModeToggle.addEventListener('click',()=>{
+    toggleDarkMode();
+})
+window.onload=()=>{
+    if(darkModeToggle.checked){
+        body.classList.add('dark-body');
+        // body.classList.remove('bg-gradient-to-r')
+        darkModeTexta.classList.add('text-white');
+        darkModeTextb.classList.add('text-white');
+        sessionText.classList.add('text-white');
+    }else{
+        body.classList.remove('dark-body');
+        // body.classList.add('bg-gradient-to-r')
+        darkModeTexta.classList.remove('text-white');
+        darkModeTextb.classList.remove('text-white');
+        sessionText.classList.remove('text-white');
+    }
+}

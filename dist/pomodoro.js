@@ -41,3 +41,47 @@ if (pomoValue == 50) {
 else {
     timer.innerHTML = "00:25:00";
 }
+var modeEmoji = document.getElementById("mode-emoji");
+var body = document.querySelector('body');
+var darkModeToggle = document.getElementById("toggleB");
+var isDark = darkModeToggle.checked;
+var darkModeTexta = document.getElementById("toggleB-texta");
+var darkModeTextb = document.getElementById("toggleB-textb");
+var sessionText = document.getElementById("sessions-text");
+function toggleDarkmode() {
+    isDark = !isDark;
+    darkModeToggle.checked = isDark;
+    if (darkModeToggle.checked) {
+        body.classList.add('dark-body');
+        // body.classList.remove('bg-gradient-to-r')
+        darkModeTexta.classList.add('text-white');
+        darkModeTextb.classList.add('text-white');
+        sessionText.classList.add('text-white');
+    }
+    else {
+        body.classList.remove('dark-body');
+        // body.classList.add('bg-gradient-to-r')
+        darkModeTexta.classList.remove('text-white');
+        darkModeTextb.classList.remove('text-white');
+        sessionText.classList.remove('text-white');
+    }
+}
+darkModeToggle.addEventListener('click', () => {
+    toggleDarkMode();
+});
+window.onload = () => {
+    if (darkModeToggle.checked) {
+        body.classList.add('dark-body');
+        // body.classList.remove('bg-gradient-to-r')
+        darkModeTexta.classList.add('text-white');
+        darkModeTextb.classList.add('text-white');
+        sessionText.classList.add('text-white');
+    }
+    else {
+        body.classList.remove('dark-body');
+        // body.classList.add('bg-gradient-to-r')
+        darkModeTexta.classList.remove('text-white');
+        darkModeTextb.classList.remove('text-white');
+        sessionText.classList.remove('text-white');
+    }
+};
