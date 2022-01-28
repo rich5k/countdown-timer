@@ -4,7 +4,8 @@ var sess2= document.getElementById("sess-2") as HTMLElement;
 var sess4= document.getElementById("sess-4") as HTMLElement;
 var sessions= document.getElementById("sessions") as HTMLElement;
 var timer = document.getElementById("timer")as HTMLElement;
-localStorage.clear();
+localStorage.removeItem("pomo");
+localStorage.removeItem("sess");
 
 pomo25.addEventListener('click',()=>{
     pomo25.classList.toggle('selected-tile');
