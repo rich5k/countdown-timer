@@ -26,21 +26,25 @@ sess4.addEventListener('click', () => {
     sess2.classList.remove('selected-tile');
     localStorage.setItem("sess", "4");
 });
-var sessValue = Number(localStorage.getItem("sess"));
-var pomoValue = Number(localStorage.getItem("pomo"));
-console.log(sessValue);
-if (sessValue == 2) {
-    sessions.innerHTML = "<li>P1: <em>not yet</em></li><li>P2: <em>not yet</em></li>";
-}
-else {
-    sessions.innerHTML = "<li>P1: <em>not yet</em></li><li>P2: <em>not yet</em></li><li>P3: <em>not yet</em></li><li>P4: <em>not yet</em></li>";
-}
-if (pomoValue == 50) {
-    timer.innerHTML = "00:50:00";
-}
-else {
-    timer.innerHTML = "00:25:00";
-}
+var sessValue;
+var pomoValue;
+var done = document.getElementById('done');
+done.addEventListener('click', () => {
+    sessValue = Number(localStorage.getItem("sess"));
+    pomoValue = Number(localStorage.getItem("pomo"));
+    if (sessValue == 2) {
+        sessions.innerHTML = "<li>P1: <em>not yet</em></li><li>P2: <em>not yet</em></li>";
+    }
+    else {
+        sessions.innerHTML = "<li>P1: <em>not yet</em></li><li>P2: <em>not yet</em></li><li>P3: <em>not yet</em></li><li>P4: <em>not yet</em></li>";
+    }
+    if (pomoValue == 50) {
+        timer.innerHTML = "00:50:00";
+    }
+    else {
+        timer.innerHTML = "00:25:00";
+    }
+});
 var modeEmoji = document.getElementById("mode-emoji");
 var body = document.querySelector('body');
 var darkModeToggle = document.getElementById("toggleB");
