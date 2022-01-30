@@ -14,18 +14,6 @@ document.getElementById("minutes-input").value = setMins < 10 ? "0" + setMins : 
 document.getElementById("seconds-input").value = setSecs < 10 ? "0" + setSecs : setSecs.toString();
 var isRepeat = false;
 const startbtn = document.getElementById("start");
-// let tickingClock;
-// let timeUpBeeper;
-// const timerSound=(p:p5)=>{
-//     let tickingClock: p5.SoundFile;
-//     p.preload=()=>{
-//         const loadSound=(path:string)=> ((p as any) as p5.SoundFile).loadSound(path);
-//         tickingClock= loadSound('../assets/Clock-Ticking-C-www.fesliyanstudios.com.mp3');
-//     }
-//     p.setup=()=>{
-//         tickingClock.play();
-//     }
-// }
 class TheTimer {
     //constructor
     constructor() {
