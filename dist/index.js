@@ -206,6 +206,10 @@ class TheTimer {
                 clearInterval(this.timerId);
                 timer.innerHTML = "EXPIRED";
             }
+            else if (distance < 0 && isRepeat) {
+                clearInterval(this.timerId);
+                this.resetTimer();
+            }
         }, 1000);
         this.state = 1;
     }
@@ -344,9 +348,9 @@ let startTimer = document.getElementById("startTimer");
 setTimerBtn.onclick = function () {
     timerOverlay.style.display = "block";
 };
-timerOverlay.addEventListener("click", () => {
-    timerOverlay.style.display = "none";
-});
+// timerOverlay.addEventListener("click",()=>{
+//     timerOverlay.style.display="none";
+// });
 startTimer.onclick = function () {
     let hourInput = document.getElementById("hour-input").value;
     let minsInput = document.getElementById("minutes-input").value;
