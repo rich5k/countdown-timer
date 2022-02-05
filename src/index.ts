@@ -8,6 +8,7 @@ var setHours= parseInt(timeBits[0]);
 var setMins = parseInt(timeBits[1]);
 var setSecs = parseInt(timeBits[2]);
 console.log(setHours);
+console.log(timer);
 
 (<HTMLInputElement>document.getElementById("hour-input")).value= setHours <10 ? "0"+setHours : setHours.toString();
 (<HTMLInputElement>document.getElementById("minutes-input")).value= setMins <10 ? "0"+setMins : setMins.toString();
