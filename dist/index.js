@@ -348,6 +348,7 @@ let setTimerBtn = document.getElementById("set-timer");
 let startTimer = document.getElementById("startTimer");
 setTimerBtn.onclick = function () {
     timerOverlay.style.display = "block";
+    timeObj.pauseTimer();
 };
 // timerOverlay.addEventListener("click",()=>{
 //     timerOverlay.style.display="none";
