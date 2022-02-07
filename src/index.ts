@@ -397,9 +397,9 @@ setTimerBtn.onclick= function(){
     timerOverlay.style.display="block";
     timeObj.pauseTimer();
 }
-// timerOverlay.addEventListener("click",()=>{
-//     timerOverlay.style.display="none";
-// });
+timerOverlay.addEventListener("click",()=>{
+    timerOverlay.style.display="none";
+});
 
 startTimer.onclick= function(){
     let hourInput = (<HTMLInputElement>document.getElementById("hour-input")).value;
