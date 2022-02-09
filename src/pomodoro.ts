@@ -387,10 +387,10 @@ done.addEventListener('click',()=>{
     pomoValue =Number(localStorage.getItem("pomo"));
     
     if(sessValue==2){
-        sessions.innerHTML="<li>P1: <em>not yet</em></li><li>P2: <em>not yet</em></li>"
+        sessions.innerHTML="<li><strong>P1:</strong> <em>not yet</em></li><li><strong>P2:</strong> <em>not yet</em></li>"
     }
     else{
-        sessions.innerHTML="<li>P1: <em>not yet</em></li><li>P2: <em>not yet</em></li><li>P3: <em>not yet</em></li><li>P4: <em>not yet</em></li>"
+        sessions.innerHTML="<li><strong>P1:</strong> <em>not yet</em></li><li><strong>P2:</strong> <em>not yet</em></li><li><strong>P3:</strong> <em>not yet</em></li><li><strong>P4:</strong> <em>not yet</em></li>"
     }
     
     if(pomoValue==50){
@@ -431,7 +431,7 @@ function toggleDarkmode(){
 }
 
 darkModeToggle.addEventListener('click',()=>{
-    toggleDarkMode();
+    toggleDarkmode();
 })
 document.addEventListener('keydown',(e)=>{
     
@@ -439,7 +439,7 @@ document.addEventListener('keydown',(e)=>{
         startNewEvent();
     }
     else if(e.key==="L"){
-        toggleDarkMode();
+        toggleDarkmode();
     }
     
 })
