@@ -346,12 +346,15 @@ function toggleDarkMode() {
 let timerOverlay = document.getElementById("timer-overlay");
 let setTimerBtn = document.getElementById("set-timer");
 let startTimer = document.getElementById("startTimer");
+let sTimerForm = document.getElementById("set-timer-form");
 setTimerBtn.onclick = function () {
     timerOverlay.style.display = "block";
     timeObj.pauseTimer();
 };
 timerOverlay.addEventListener("click", () => {
     timerOverlay.style.display = "none";
+}).find(sTimerForm).addEventListener("click", (e) => {
+    e.stopPropagation();
 });
 startTimer.onclick = function () {
     let hourInput = document.getElementById("hour-input").value;

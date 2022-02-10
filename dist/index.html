@@ -56,13 +56,13 @@
                         <div></div>
                         <div class="mt-3 text-center bg-white col-span-4 flex  py-16 rounded-lg">
 
-                            <form action="#">
+                            <form id="set-timer-form" action="#">
                                 <div class="pl-24 mb-4">
                                     <!-- <div></div> -->
                                     <div class="flex flex-row">
     
                                         <label class="label-with-input flex flex-col">
-                                            <input id="hour-input" class="hours" size="1" type="text" maxlength="2" pattern="[0-9]">
+                                            <input id="hour-input" class="hours clickable" size="1" type="text" maxlength="2" pattern="[0-9]">
                                             <span class="input-label">
                                                 <span class="input-label-text">
                                                     Hours
@@ -73,7 +73,7 @@
                                             :
                                         </span>
                                         <label class="label-with-input flex flex-col">
-                                            <input id="minutes-input" class="minutes" size="1" type="text" maxlength="2" pattern="[0-9]">
+                                            <input id="minutes-input" class="minutes clickable" size="1" type="text" maxlength="2" pattern="[0-9]">
                                             <span class="input-label">
                                                 <span class="input-label-text">
                                                     Minutes
@@ -84,7 +84,7 @@
                                             :
                                         </span>
                                         <label class="label-with-input flex flex-col">
-                                            <input id="seconds-input" class="seconds" size="1" type="text" maxlength="2" pattern="[0-9]">
+                                            <input id="seconds-input" class="seconds clickable" size="1" type="text" maxlength="2" pattern="[0-9]">
                                             <span class="input-label">
                                                 <span class="input-label-text">
                                                     Seconds
@@ -94,7 +94,7 @@
                                     </div>
                                     
                                 </div>
-                                <button id="startTimer" type="submit" class="focus:outline-black bg-blue-300 text-white p-2 shadow-xl rounded-full px-4">Start</button>
+                                <button id="startTimer" type="submit" class="focus:outline-black bg-blue-300 text-white p-2 shadow-xl rounded-full px-4 clickable">Start</button>
                             </form>
                         </div>
                         <div></div>

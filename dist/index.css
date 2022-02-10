@@ -65,3 +65,15 @@ input:checked ~.dot:before{
         color: black;
     }
 }
+
+#timer-overlay{
+    /* height: 0px; */
+    overflow: visible;
+    /* pointer-events: none; */
+    /* background: none !important; */
+}
+
+.clickable{
+    /* pointer-events: auto; */
+    z-index: 1;
+}

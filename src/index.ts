@@ -392,6 +392,7 @@ function toggleDarkMode(){
 let timerOverlay= document.getElementById("timer-overlay") as HTMLElement;
 let setTimerBtn= document.getElementById("set-timer") as HTMLElement;
 let startTimer= document.getElementById("startTimer") as HTMLElement;
+let sTimerForm= document.getElementById("set-timer-form") as HTMLElement;
 
 setTimerBtn.onclick= function(){
     timerOverlay.style.display="block";
@@ -399,6 +400,8 @@ setTimerBtn.onclick= function(){
 }
 timerOverlay.addEventListener("click",()=>{
     timerOverlay.style.display="none";
+}).find(sTimerForm).addEventListener("click",(e)=>{
+    e.stopPropagation();
 });
 
 startTimer.onclick= function(){
