@@ -347,15 +347,16 @@ let timerOverlay = document.getElementById("timer-overlay");
 let setTimerBtn = document.getElementById("set-timer");
 let startTimer = document.getElementById("startTimer");
 let sTimerForm = document.getElementById("set-timer-form");
+let sTimerSection = document.getElementById("set-timer-section");
 setTimerBtn.onclick = function () {
     timerOverlay.style.display = "block";
+    sTimerSection.style.display = "block";
     timeObj.pauseTimer();
 };
-// timerOverlay.addEventListener("click",()=>{
-//     timerOverlay.style.display="none";
-// }).find(sTimerForm).addEventListener("click",(e)=>{
-//     e.stopPropagation();
-// });
+timerOverlay.addEventListener("click", () => {
+    timerOverlay.style.display = "none";
+    sTimerSection.style.display = "none";
+});
 startTimer.onclick = function () {
     let hourInput = document.getElementById("hour-input").value;
     let minsInput = document.getElementById("minutes-input").value;

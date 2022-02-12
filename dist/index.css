@@ -73,10 +73,9 @@ input:checked ~.dot:before{
     /* background: none !important; */
 }
 
-.clickable{
-    /* pointer-events: auto; */
-    z-index: 1;
-}
+/* #set-timer-section{
+    z-index: 10;
+} */
 
 #set-timer-form{
     padding-left: 11%;
