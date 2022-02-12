@@ -19,8 +19,8 @@ input:checked ~.dot:before{
 }
 .hours, .minutes, .seconds{
     height: 250px;
-    width: 350px;
-    font-size:200pt;
+    width: 16vw;
+    font-size:10vw;
     background-color: transparent;
     text-align: center;
 }
@@ -76,4 +76,13 @@ input:checked ~.dot:before{
 .clickable{
     /* pointer-events: auto; */
     z-index: 1;
+}
+
+#set-timer-form{
+    padding-left: 11%;
+}
+
+.divider{
+    font-size: 10vw;
+    margin-top: 10vh;
 }
