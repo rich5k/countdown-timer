@@ -246,7 +246,6 @@ class TheTimer{
         if(this.state!=1) return;
         startbtn.innerHTML="Start";
         this.remaining =1000-(new Date().getTime()- this.startTime);
-       
         window.clearInterval(this.timerId);
         this.state=2;
         resetbtn.classList.remove('hidden');
