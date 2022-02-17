@@ -10,12 +10,15 @@ var setMins = parseInt(timeBits[1]);
 var setSecs = parseInt(timeBits[2]);
 console.log(setHours);
 console.log(timer);
+localStorage.setItem("startTime", time);
 document.getElementById("hour-input").value = setHours < 10 ? "0" + setHours : setHours.toString();
 document.getElementById("minutes-input").value = setMins < 10 ? "0" + setMins : setMins.toString();
 document.getElementById("seconds-input").value = setSecs < 10 ? "0" + setSecs : setSecs.toString();
 var isRepeat = false;
 const startbtn = document.getElementById("start");
 const resetbtn = document.getElementById("reset");
+var isPause = false;
+var resetCount = 0;
 class TheTimer {
     //constructor
     constructor() {
@@ -228,6 +231,7 @@ class TheTimer {
         if (this.state != 2)
             return;
         startbtn.innerHTML = "Pause";
+        isPause = false;
         var countDownDate = this.updateCountdownTime();
         this.timerId = setInterval(() => {
             // Get todays date and time
@@ -255,8 +259,12 @@ class TheTimer {
     resetTimer() {
         if (this.state != 2)
             return;
+        window.clearInterval(this.timerId);
         startbtn.innerHTML = "Pause";
+        resetCount++;
+        timer.innerHTML = String(localStorage.getItem("startTime"));
         var countDownDate = this.getCountdownTime();
+        resetbtn.classList.add('hidden');
         this.timerId = setInterval(() => {
             // Get todays date and time
             var now = new Date().getTime();
@@ -281,11 +289,17 @@ class TheTimer {
     }
 }
 var count = 0;
-var isPause = false;
 var timeObj = new TheTimer();
 function startEvent() {
     isPause = !isPause;
-    if (count > 1) {
+    console.log(isPause);
+    if (resetCount === 1) {
+        timeObj.pauseTimer();
+        console.log("pause true & it was resetted");
+        resetCount = 0;
+        isPause = true;
+    }
+    else if (count > 1) {
         if (isPause) {
             timeObj.pauseTimer();
             console.log("pause true");
@@ -307,8 +321,14 @@ function startEvent() {
         count++;
     }
 }
+function resetEvent() {
+    timeObj.resetTimer();
+}
 startbtn.addEventListener("click", () => {
     startEvent();
+});
+resetbtn.addEventListener("click", () => {
+    resetEvent();
 });
 const repeatbtn = document.getElementById("repeat");
 const repeatMarker = document.getElementById("repeat-marker");
