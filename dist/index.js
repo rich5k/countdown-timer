@@ -15,6 +15,7 @@ document.getElementById("minutes-input").value = setMins < 10 ? "0" + setMins : 
 document.getElementById("seconds-input").value = setSecs < 10 ? "0" + setSecs : setSecs.toString();
 var isRepeat = false;
 const startbtn = document.getElementById("start");
+const resetbtn = document.getElementById("reset");
 class TheTimer {
     //constructor
     constructor() {
@@ -221,6 +222,7 @@ class TheTimer {
         this.remaining = 1000 - (new Date().getTime() - this.startTime);
         window.clearInterval(this.timerId);
         this.state = 2;
+        resetbtn.classList.remove('hidden');
     }
     resumeTimer() {
         if (this.state != 2)
@@ -248,6 +250,7 @@ class TheTimer {
             }
         }, 1000);
         this.state = 1;
+        resetbtn.classList.add('hidden');
     }
     resetTimer() {
         if (this.state != 2)

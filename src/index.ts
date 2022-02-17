@@ -15,7 +15,7 @@ console.log(timer);
 (<HTMLInputElement>document.getElementById("seconds-input")).value= setSecs <10 ? "0"+setSecs : setSecs.toString();
 var isRepeat=false;
 const startbtn= document.getElementById("start") as HTMLElement;
-
+const resetbtn= document.getElementById("reset") as HTMLElement;
 
 class TheTimer{
     //instance variables
@@ -246,6 +246,7 @@ class TheTimer{
         
         window.clearInterval(this.timerId);
         this.state=2;
+        resetbtn.classList.remove('hidden');
         
     }
     
@@ -280,6 +281,7 @@ class TheTimer{
             }
         }, 1000);
         this.state=1;
+        resetbtn.classList.add('hidden');
     }
     resetTimer():void{
         if(this.state!=2) return;
