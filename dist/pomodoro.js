@@ -253,8 +253,12 @@ class NewTimer {
     resetTimer() {
         if (this.state != 2)
             return;
-        startbtn2.innerHTML = "Pause";
+        window.clearInterval(this.timerId);
+        startbtn.innerHTML = "Pause";
+        resetCount++;
+        timer.innerHTML = String(localStorage.getItem("startTime"));
         var countDownDate = this.getCountdownTime();
+        resetbtn.classList.add('hidden');
         this.timerId = setInterval(() => {
             // Get todays date and time
             var now = new Date().getTime();
