@@ -5,6 +5,7 @@ var sess4= document.getElementById("sess-4") as HTMLElement;
 var sessions= document.getElementById("sessions") as HTMLElement;
 var timer = document.getElementById("timer")as HTMLElement;
 const startbtn2= document.getElementById("start") as HTMLElement;
+const resetbtn2= document.getElementById("reset") as HTMLElement;
 localStorage.removeItem("pomo");
 localStorage.removeItem("sess");
 
@@ -18,8 +19,8 @@ console.log(setHours);
 
 
 var isRepeat=false;
-
-
+var isPause=false;
+var resetCount=0;
 class NewTimer{
     //instance variables
     state:number;//0=idle, 1=running, 2= paused, 3=resumed
@@ -246,7 +247,7 @@ class NewTimer{
         if(this.state!=1) return;
         startbtn2.innerHTML="Start";
         this.remaining =1000-(new Date().getTime()- this.startTime);
-        
+        resetbtn2.classList.remove('hidden');
         window.clearInterval(this.timerId);
         this.state=2;
         
@@ -257,6 +258,7 @@ class NewTimer{
 
         
         startbtn2.innerHTML="Pause";
+        isPause=false;
         var countDownDate= this.updateCountdownTime();
         
         this.timerId= setInterval(()=>{
@@ -283,6 +285,7 @@ class NewTimer{
             }
         }, 1000);
         this.state=1;
+        resetbtn2.classList.add('hidden');
     }
     resetTimer():void{
         if(this.state!=2) return;
@@ -292,7 +295,7 @@ class NewTimer{
         resetCount++;
         timer.innerHTML= String(localStorage.getItem("startTime"));
         var countDownDate= this.getCountdownTime();
-        resetbtn.classList.add('hidden');
+        resetbtn2.classList.add('hidden');
         this.timerId= setInterval(()=>{
             // Get todays date and time
             var now = new Date().getTime();
@@ -321,12 +324,18 @@ class NewTimer{
 }
 
 var count=0;
-var isPause=false;
 var timeObj= new NewTimer();
 
 function startNewEvent(){
     isPause=!isPause;
-    if(count>1){
+    console.log(isPause);
+    if(resetCount===1){
+        timeObj.pauseTimer();
+        console.log("pause true & it was resetted");
+        resetCount=0;
+        isPause=true;
+    }
+    else if(count>1){
         if(isPause){
             timeObj.pauseTimer();
             console.log("pause true");
@@ -348,11 +357,18 @@ function startNewEvent(){
         count++;
     }
     
-    
 
+}
+function resetNewEvent(){
+    timeObj.resetTimer();
 }
 startbtn2.addEventListener("click",()=>{
     startNewEvent();
+    
+});
+
+resetbtn2.addEventListener("click",()=>{
+    resetNewEvent();
     
 });
 

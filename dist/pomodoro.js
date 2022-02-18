@@ -6,6 +6,7 @@ var sess4 = document.getElementById("sess-4");
 var sessions = document.getElementById("sessions");
 var timer = document.getElementById("timer");
 const startbtn2 = document.getElementById("start");
+const resetbtn2 = document.getElementById("reset");
 localStorage.removeItem("pomo");
 localStorage.removeItem("sess");
 var time = timer.innerHTML;
@@ -16,6 +17,8 @@ var setSecs = parseInt(timeBits[2]);
 console.log(setHours);
 // console.log(timer);
 var isRepeat = false;
+var isPause = false;
+var resetCount = 0;
 class NewTimer {
     //constructor
     constructor() {
@@ -220,6 +223,7 @@ class NewTimer {
             return;
         startbtn2.innerHTML = "Start";
         this.remaining = 1000 - (new Date().getTime() - this.startTime);
+        resetbtn2.classList.remove('hidden');
         window.clearInterval(this.timerId);
         this.state = 2;
     }
@@ -227,6 +231,7 @@ class NewTimer {
         if (this.state != 2)
             return;
         startbtn2.innerHTML = "Pause";
+        isPause = false;
         var countDownDate = this.updateCountdownTime();
         this.timerId = setInterval(() => {
             // Get todays date and time
@@ -249,6 +254,7 @@ class NewTimer {
             }
         }, 1000);
         this.state = 1;
+        resetbtn2.classList.add('hidden');
     }
     resetTimer() {
         if (this.state != 2)
@@ -258,7 +264,7 @@ class NewTimer {
         resetCount++;
         timer.innerHTML = String(localStorage.getItem("startTime"));
         var countDownDate = this.getCountdownTime();
-        resetbtn.classList.add('hidden');
+        resetbtn2.classList.add('hidden');
         this.timerId = setInterval(() => {
             // Get todays date and time
             var now = new Date().getTime();
@@ -283,11 +289,17 @@ class NewTimer {
     }
 }
 var count = 0;
-var isPause = false;
 var timeObj = new NewTimer();
 function startNewEvent() {
     isPause = !isPause;
-    if (count > 1) {
+    console.log(isPause);
+    if (resetCount === 1) {
+        timeObj.pauseTimer();
+        console.log("pause true & it was resetted");
+        resetCount = 0;
+        isPause = true;
+    }
+    else if (count > 1) {
         if (isPause) {
             timeObj.pauseTimer();
             console.log("pause true");
@@ -309,8 +321,14 @@ function startNewEvent() {
         count++;
     }
 }
+function resetNewEvent() {
+    timeObj.resetTimer();
+}
 startbtn2.addEventListener("click", () => {
     startNewEvent();
+});
+resetbtn2.addEventListener("click", () => {
+    resetNewEvent();
 });
 pomo25.addEventListener('click', () => {
     pomo25.classList.toggle('selected-tile');
