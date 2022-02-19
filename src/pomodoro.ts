@@ -41,6 +41,7 @@ class NewTimer{
     getCountdownTime():number{
         time= timer.innerHTML;
         timeBits=time.split(":");
+        localStorage.setItem("startTime",time);
         setHours= parseInt(timeBits[0]);
         setMins = parseInt(timeBits[1]);
         setSecs = parseInt(timeBits[2]);
@@ -291,7 +292,7 @@ class NewTimer{
         if(this.state!=2) return;
 
         window.clearInterval(this.timerId);
-        startbtn.innerHTML="Pause";
+        startbtn2.innerHTML="Pause";
         resetCount++;
         timer.innerHTML= String(localStorage.getItem("startTime"));
         var countDownDate= this.getCountdownTime();
