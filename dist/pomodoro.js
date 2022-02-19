@@ -335,11 +335,13 @@ pomo25.addEventListener('click', () => {
     pomo25.classList.toggle('selected-tile');
     pomo50.classList.remove('selected-tile');
     localStorage.setItem("pomo", "25");
+    localStorage.setItem("break", "5");
 });
 pomo50.addEventListener('click', () => {
     pomo50.classList.toggle('selected-tile');
     pomo25.classList.remove('selected-tile');
     localStorage.setItem("pomo", "50");
+    localStorage.setItem("break", "10");
 });
 sess2.addEventListener('click', () => {
     sess2.classList.toggle('selected-tile');
