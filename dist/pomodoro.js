@@ -360,10 +360,18 @@ done.addEventListener('click', () => {
     sessValue = Number(localStorage.getItem("sess"));
     pomoValue = Number(localStorage.getItem("pomo"));
     if (sessValue == 2) {
-        sessions.innerHTML = "<li><strong>P1:</strong> <em>not yet</em></li><li><strong>P2:</strong> <em>not yet</em></li>";
+        sessions.innerHTML = "";
+        for (let i = 1; i <= sessValue; i++) {
+            localStorage.setItem(`sess${i}`, "not yet");
+            sessions.innerHTML += `<li><strong>P${i}:</strong> <em>` + localStorage.getItem(`sess${i}`) + `</em></li>`;
+        }
     }
     else {
-        sessions.innerHTML = "<li><strong>P1:</strong> <em>not yet</em></li><li><strong>P2:</strong> <em>not yet</em></li><li><strong>P3:</strong> <em>not yet</em></li><li><strong>P4:</strong> <em>not yet</em></li>";
+        sessions.innerHTML = "";
+        for (let i = 1; i <= sessValue; i++) {
+            localStorage.setItem(`sess${i}`, "not yet");
+            sessions.innerHTML += `<li><strong>P${i}:</strong> <em>` + localStorage.getItem(`sess${i}`) + `</em></li>`;
+        }
     }
     if (pomoValue == 50) {
         timer.innerHTML = "00:50:00";
