@@ -322,46 +322,78 @@ class NewTimer{
         }, 1000);
         this.state=1;
     }
+    startBreak():void{
+        window.clearInterval(this.timerId);
+        startbtn2.innerHTML="Pause";
+        resetCount++;
+        timer.innerHTML= String(localStorage.getItem("break"));
+        var countDownDate= this.getCountdownTime();
+        resetbtn2.classList.add('hidden');
+        this.timerId= setInterval(()=>{
+            // Get todays date and time
+            var now = new Date().getTime();
+            this.startTime=now;
+            // Find the distance between now an the count down date
+            var distance = countDownDate - now;
+            
+            // Time calculations for days, hours, minutes and seconds
+            var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+            
+            var nhours= hours <10 ? "0"+hours : hours;
+            var nminutes= minutes <10 ? "0"+minutes : minutes;
+            var nseconds = seconds <10 ? "0"+seconds : seconds;
+            timer.innerHTML=nhours+":"+nminutes+":"+nseconds;
+                        
+            // If the count down is over, write some text 
+            if (distance < 0 && !isRepeat) {
+                clearInterval(this.timerId);
+                timer.innerHTML = "EXPIRED";
+            }
+        }, 1000);
+        this.state=1;
+    }
 }
 
 var count=0;
-var timeObj= new NewTimer();
+var nTimeObj= new NewTimer();
 
 function startNewEvent(){
     isPause=!isPause;
     console.log(isPause);
     if(resetCount===1){
-        timeObj.pauseTimer();
+        nTimeObj.pauseTimer();
         console.log("pause true & it was resetted");
         resetCount=0;
         isPause=true;
     }
     else if(count>1){
         if(isPause){
-            timeObj.pauseTimer();
+            nTimeObj.pauseTimer();
             console.log("pause true");
 
         }
         else{
-            timeObj.resumeTimer();
+            nTimeObj.resumeTimer();
             console.log("pause false");
         }
         console.log("Timer has already started");
     }else if(count===1){
-        timeObj.pauseTimer();
+        nTimeObj.pauseTimer();
         console.log("pause true");
         isPause=!isPause;
         count++;
     }
     else{
-        timeObj.startTimer();
+        nTimeObj.startTimer();
         count++;
     }
     
 
 }
 function resetNewEvent(){
-    timeObj.resetTimer();
+    nTimeObj.resetTimer();
 }
 startbtn2.addEventListener("click",()=>{
     startNewEvent();
@@ -426,10 +458,11 @@ done.addEventListener('click',()=>{
         timer.innerHTML="00:50:00";
     }
     else{
-        timer.innerHTML="00:25:00";
+        // timer.innerHTML="00:25:00";
+        timer.innerHTML="00:02:00";
     }
 
-    timeObj.updateCountdownTime();
+    nTimeObj.updateCountdownTime();
     
 
 })
