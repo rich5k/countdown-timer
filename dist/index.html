@@ -47,59 +47,59 @@
     
         </div>
         <!-- Timer -->
+        <!-- overlay effect for set timer -->
+        <div id="timer-overlay" class="fixed hidden inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full">
+        </div>
+        <div id="set-timer-section" class="top-40 relative mx-auto grid grid-cols-6 hidden">
+            <div></div>
+            <div class="mt-3 text-center bg-white col-span-4 flex  py-16 rounded-lg">
+
+                <form id="set-timer-form" action="#">
+                    <div class="mb-4">
+                        <!-- <div></div> -->
+                        <div class="flex flex-row">
+
+                            <label class="label-with-input flex flex-col">
+                                <input id="hour-input" class="hours clickable" size="1" type="text" maxlength="2" pattern="[0-9]">
+                                <span class="input-label">
+                                    <span class="input-label-text">
+                                        Hours
+                                    </span>
+                                </span>
+                            </label>
+                            <span class="divider ">
+                                :
+                            </span>
+                            <label class="label-with-input flex flex-col">
+                                <input id="minutes-input" class="minutes clickable" size="1" type="text" maxlength="2" pattern="[0-9]">
+                                <span class="input-label">
+                                    <span class="input-label-text">
+                                        Minutes
+                                    </span>
+                                </span>
+                            </label>
+                            <span class="divider ">
+                                :
+                            </span>
+                            <label class="label-with-input flex flex-col">
+                                <input id="seconds-input" class="seconds clickable" size="1" type="text" maxlength="2" pattern="[0-9]">
+                                <span class="input-label">
+                                    <span class="input-label-text">
+                                        Seconds
+                                    </span>
+                                </span>
+                            </label>
+                        </div>
+                        
+                    </div>
+                    <button id="startTimer" type="submit" class="focus:outline-black bg-blue-300 text-white p-2 shadow-xl rounded-full px-4 clickable">Start</button>
+                </form>
+            </div>
+            <div></div>
+        </div>
         <div class="timer-section my-16 grid grid-cols-1 md:grid-cols-3 grid-flow-col">
             <div></div>
             <div>
-                <!-- overlay effect for set timer -->
-                <div id="timer-overlay" class="fixed hidden inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full">
-                </div>
-                <div id="set-timer-section" class="top-40 relative mx-auto grid grid-cols-6 hidden">
-                    <div></div>
-                    <div class="mt-3 text-center bg-white col-span-4 flex  py-16 rounded-lg">
-
-                        <form id="set-timer-form" action="#">
-                            <div class="mb-4">
-                                <!-- <div></div> -->
-                                <div class="flex flex-row">
-
-                                    <label class="label-with-input flex flex-col">
-                                        <input id="hour-input" class="hours clickable" size="1" type="text" maxlength="2" pattern="[0-9]">
-                                        <span class="input-label">
-                                            <span class="input-label-text">
-                                                Hours
-                                            </span>
-                                        </span>
-                                    </label>
-                                    <span class="divider ">
-                                        :
-                                    </span>
-                                    <label class="label-with-input flex flex-col">
-                                        <input id="minutes-input" class="minutes clickable" size="1" type="text" maxlength="2" pattern="[0-9]">
-                                        <span class="input-label">
-                                            <span class="input-label-text">
-                                                Minutes
-                                            </span>
-                                        </span>
-                                    </label>
-                                    <span class="divider ">
-                                        :
-                                    </span>
-                                    <label class="label-with-input flex flex-col">
-                                        <input id="seconds-input" class="seconds clickable" size="1" type="text" maxlength="2" pattern="[0-9]">
-                                        <span class="input-label">
-                                            <span class="input-label-text">
-                                                Seconds
-                                            </span>
-                                        </span>
-                                    </label>
-                                </div>
-                                
-                            </div>
-                            <button id="startTimer" type="submit" class="focus:outline-black bg-blue-300 text-white p-2 shadow-xl rounded-full px-4 clickable">Start</button>
-                        </form>
-                    </div>
-                    <div></div>
-                </div>
                 <h1 class="text-blue-500 lg:text-9xl text-8xl sm:mr-0 text-center" id="timer">00:50:00</h1>
                 
                 <div class="grid grid-cols-3 grid-flow-col my-8">
