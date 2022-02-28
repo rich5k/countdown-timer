@@ -240,7 +240,7 @@ class NewTimer{
                 for(let i=1;i<=sessValue;i++){
                     if(localStorage.getItem(`sess${i}`)==="not yet" && completeSession===0){
                         localStorage.setItem(`sess${i}`,new Date().toLocaleTimeString());
-                        sessions.innerHTML+=`<li><strong>P${i}:</strong> <em>`+localStorage.getItem(`sess${i}`)+`</em></li>`
+                        (document.getElementById(`p${i}`)as HTMLElement).innerHTML=`<li id="p${i}"><strong>P${i}:</strong> <em>`+localStorage.getItem(`sess${i}`)+`</em></li>`
                         completeSession++;
                     }else if(localStorage.getItem(`sess${i}`)==="not yet" && completeSession===1){
                         this.startBreak();
@@ -301,7 +301,7 @@ class NewTimer{
                 for(let i=1;i<=sessValue;i++){
                     if(localStorage.getItem(`sess${i}`)==="not yet" && completeSession===0){
                         localStorage.setItem(`sess${i}`,new Date().toLocaleTimeString());
-                        sessions.innerHTML+=`<li><strong>P${i}:</strong> <em>`+localStorage.getItem(`sess${i}`)+`</em></li>`;
+                        (document.getElementById(`p${i}`)as HTMLElement).innerHTML=`<li id="p${i}"><strong>P${i}:</strong> <em>`+localStorage.getItem(`sess${i}`)+`</em></li>`;
                         completeSession++;
                     }else if(localStorage.getItem(`sess${i}`)==="not yet" && completeSession===1){
                         this.startBreak();
@@ -471,14 +471,14 @@ done.addEventListener('click',()=>{
         sessions.innerHTML=""
         for(let i=1;i<=sessValue;i++){
             localStorage.setItem(`sess${i}`,"not yet");
-            sessions.innerHTML+=`<li><strong>P${i}:</strong> <em>`+localStorage.getItem(`sess${i}`)+`</em></li>`
+            sessions.innerHTML+=`<li id="p${i}"><strong>P${i}:</strong> <em>`+localStorage.getItem(`sess${i}`)+`</em></li>`
         }
     }
     else{
         sessions.innerHTML=""
         for(let i=1;i<=sessValue;i++){
             localStorage.setItem(`sess${i}`,"not yet");
-            sessions.innerHTML+=`<li><strong>P${i}:</strong> <em>`+localStorage.getItem(`sess${i}`)+`</em></li>`
+            sessions.innerHTML+=`<li id="p${i}"><strong>P${i}:</strong> <em>`+localStorage.getItem(`sess${i}`)+`</em></li>`
         }
     }
     
