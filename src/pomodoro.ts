@@ -377,7 +377,27 @@ class NewTimer{
             // If the count down is over, write some text 
             if (distance < 0) {
                 clearInterval(this.timerId);
-                timer.innerHTML = "EXPIRED";
+                // timer.innerHTML = "EXPIRED";
+                 let completeSession=0;
+                for(let i=1;i<=sessValue;i++){
+                    if(localStorage.getItem(`sess${i}`)==="not yet"){
+                        if(pomoValue==50){
+                            timer.innerHTML="00:50:00";
+                            this.startTimer();
+                        }
+                        else{
+                            // timer.innerHTML="00:25:00";
+                            timer.innerHTML="00:02:00";
+                            this.startTimer();
+                        }
+                        
+                    }else{
+                        completeSession++;
+                    }
+                    
+                }
+                if(completeSession==sessValue)
+                    timer.innerHTML="Completed all Pomodoro Sessions. Well Done";
             }
         }, 1000);
         this.state=1;
