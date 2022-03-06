@@ -203,7 +203,8 @@ class TheTimer {
             var nminutes = minutes < 10 ? "0" + minutes : minutes;
             var nseconds = seconds < 10 ? "0" + seconds : seconds;
             timer.innerHTML = nhours + ":" + nminutes + ":" + nseconds;
-            if (hours == 0 && minutes <= 10) {
+            if (hours == 0 && minutes == 10 && seconds <= 10) {
+                console.log("less than 10 secs");
                 // timerSound;
             }
             // If the count down is over, write some text 
