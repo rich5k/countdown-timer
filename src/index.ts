@@ -227,7 +227,8 @@ class TheTimer{
             var nseconds = seconds <10 ? "0"+seconds : seconds;
             timer.innerHTML=nhours+":"+nminutes+":"+nseconds;
               
-            if(distance<=10){
+            if(hours==0 && minutes<=10){
+
                 // timerSound;
             }
             // If the count down is over, write some text 
