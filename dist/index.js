@@ -248,6 +248,10 @@ class TheTimer {
             var nminutes = minutes < 10 ? "0" + minutes : minutes;
             var nseconds = seconds < 10 ? "0" + seconds : seconds;
             timer.innerHTML = nhours + ":" + nminutes + ":" + nseconds;
+            if (hours == 0 && minutes == 10 && seconds <= 10) {
+                console.log("less than 10 secs");
+                // timerSound;
+            }
             // If the count down is over, write some text 
             if (distance < 0 && !isRepeat) {
                 clearInterval(this.timerId);
@@ -280,6 +284,10 @@ class TheTimer {
             var nminutes = minutes < 10 ? "0" + minutes : minutes;
             var nseconds = seconds < 10 ? "0" + seconds : seconds;
             timer.innerHTML = nhours + ":" + nminutes + ":" + nseconds;
+            if (hours == 0 && minutes == 10 && seconds <= 10) {
+                console.log("less than 10 secs");
+                // timerSound;
+            }
             // If the count down is over, write some text 
             if (distance < 0 && !isRepeat) {
                 clearInterval(this.timerId);
@@ -378,8 +386,8 @@ setTimerBtn.onclick = function () {
     timeObj.pauseTimer();
 };
 timerOverlay.addEventListener("click", () => {
-    timerOverlay.style.display = "none";
-    sTimerSection.style.display = "none";
+    timerOverlay.style.display, sTimerSection.style.display = "none";
+    // sTimerForm.style.display="none";
 });
 startTimer.onclick = function () {
     let hourInput = document.getElementById("hour-input").value;
