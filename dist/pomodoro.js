@@ -7,6 +7,7 @@ var sessions = document.getElementById("sessions");
 var timer = document.getElementById("timer");
 const startbtn2 = document.getElementById("start");
 const resetbtn2 = document.getElementById("reset");
+const breakMarker = document.getElementById("break-marker");
 localStorage.removeItem("pomo");
 localStorage.removeItem("sess");
 var time = timer.innerHTML;
@@ -323,6 +324,7 @@ class NewTimer {
         timer.innerHTML = String(localStorage.getItem("break"));
         var countDownDate = this.getCountdownTime();
         resetbtn2.classList.add('hidden');
+        breakMarker.classList.remove('hidden');
         this.timerId = setInterval(() => {
             // Get todays date and time
             var now = new Date().getTime();
@@ -351,6 +353,7 @@ class NewTimer {
                         else {
                             // timer.innerHTML="00:25:00";
                             timer.innerHTML = "00:02:00";
+                            breakMarker.classList.add('hidden');
                             this.startTimer();
                         }
                     }

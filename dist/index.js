@@ -181,9 +181,6 @@ class TheTimer {
         }
         currentDay = currentDay + extraDay;
         return new Date(`${currentMonth} ${currentDay}, ${currentYear} ${currentHours}:${currentMinutes}:${currentSeconds}`).getTime();
-        // console.log(updateHours);
-        // timer.innerHTML=countDownDate.toString();
-        // timer.innerHTML=currentHours+":"+currentMinutes+":"+currentSeconds;
     }
     startTimer() {
         // startTime= new Date().getTime();
@@ -203,6 +200,7 @@ class TheTimer {
             var nminutes = minutes < 10 ? "0" + minutes : minutes;
             var nseconds = seconds < 10 ? "0" + seconds : seconds;
             timer.innerHTML = nhours + ":" + nminutes + ":" + nseconds;
+            //in the last 10 secs of the timer play sound
             if (hours == 0 && minutes == 10 && seconds <= 10) {
                 console.log("less than 10 secs");
                 // timerSound;
@@ -248,6 +246,7 @@ class TheTimer {
             var nminutes = minutes < 10 ? "0" + minutes : minutes;
             var nseconds = seconds < 10 ? "0" + seconds : seconds;
             timer.innerHTML = nhours + ":" + nminutes + ":" + nseconds;
+            //in the last 10 secs of the timer play sound
             if (hours == 0 && minutes == 10 && seconds <= 10) {
                 console.log("less than 10 secs");
                 // timerSound;
@@ -284,6 +283,7 @@ class TheTimer {
             var nminutes = minutes < 10 ? "0" + minutes : minutes;
             var nseconds = seconds < 10 ? "0" + seconds : seconds;
             timer.innerHTML = nhours + ":" + nminutes + ":" + nseconds;
+            //in the last 10 secs of the timer play sound
             if (hours == 0 && minutes == 10 && seconds <= 10) {
                 console.log("less than 10 secs");
                 // timerSound;
