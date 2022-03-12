@@ -9,5 +9,5 @@ function preload(){
 //     tickingClock.play();
 // }
 
-exports.tickingClock=tickingClock;
-exports.timeUpBeeper=timeUpBeeper;
+module.exports=tickingClock;
+module.exports=timeUpBeeper;

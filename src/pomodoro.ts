@@ -1,3 +1,4 @@
+// import * from '../dist/timerSound';
 var pomo25= document.getElementById("pomo-25") as HTMLElement;
 var pomo50= document.getElementById("pomo-50") as HTMLElement;
 var sess2= document.getElementById("sess-2") as HTMLElement;
@@ -237,6 +238,7 @@ class NewTimer{
             if (distance < 0) {
                 clearInterval(this.timerId);
                 // timer.innerHTML = "EXPIRED";
+                // tickingClock.play();
                 let completeSession=0;
                 for(let i=1;i<=sessValue;i++){
                     if(localStorage.getItem(`sess${i}`)==="not yet" && completeSession===0){
