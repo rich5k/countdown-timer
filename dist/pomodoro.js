@@ -221,9 +221,33 @@ class NewTimer {
                         document.getElementById(`p${i}`).innerHTML = `<li id="p${i}"><strong>P${i}:</strong> <em>` + localStorage.getItem(`sess${i}`) + `</em></li>`;
                         completeSession++;
                     }
-                    else if (localStorage.getItem(`sess${i}`) === "not yet" && completeSession === 1) {
+                    else if (localStorage.getItem(`sess${i}`) === "not yet" && completeSession > 0) {
                         this.startBreak();
                         completeSession++;
+                        startbtn2.innerHTML = "Pause";
+                        countDownDate = this.getCountdownTime();
+                        this.timerId = setInterval(() => {
+                            // Get todays date and time
+                            var now = new Date().getTime();
+                            this.startTime = now;
+                            // Find the distance between now an the count down date
+                            var distance = countDownDate - now;
+                            // Time calculations for days, hours, minutes and seconds
+                            var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                            var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                            var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+                            var nhours = hours < 10 ? "0" + hours : hours;
+                            var nminutes = minutes < 10 ? "0" + minutes : minutes;
+                            var nseconds = seconds < 10 ? "0" + seconds : seconds;
+                            timer.innerHTML = nhours + ":" + nminutes + ":" + nseconds;
+                            if (distance <= 10) {
+                                // timerSound;
+                            }
+                            // If the count down is over, write some text 
+                            if (distance < 0) {
+                                clearInterval(this.timerId);
+                            }
+                        }, 1000);
                     }
                 }
                 if (completeSession == sessValue)
@@ -350,13 +374,15 @@ class NewTimer {
                     if (localStorage.getItem(`sess${i}`) === "not yet") {
                         if (pomoValue == 50) {
                             timer.innerHTML = "00:50:00";
-                            this.startTimer();
+                            // this.startTimer();
+                            return;
                         }
                         else {
                             // timer.innerHTML="00:25:00";
                             timer.innerHTML = "00:02:00";
                             breakMarker.classList.add('hidden');
-                            this.startTimer();
+                            // this.startTimer();
+                            return;
                         }
                     }
                     else {
