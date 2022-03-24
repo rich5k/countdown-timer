@@ -239,26 +239,9 @@ class NewTimer{
                 clearInterval(this.timerId);
                 // timer.innerHTML = "EXPIRED";
                 // tickingClock.play();
-                let completeSession=0;
-                for(let i=1;i<=sessValue;i++){
-                    if(localStorage.getItem(`sess${i}`)==="not yet" && completeSession===0){
-                        localStorage.setItem(`sess${i}`,new Date().toLocaleTimeString());
-                        (document.getElementById(`p${i}`)as HTMLElement).innerHTML=`<li id="p${i}"><strong>P${i}:</strong> <em>`+localStorage.getItem(`sess${i}`)+`</em></li>`
-                        completeSession++;
-                    }else if(localStorage.getItem(`sess${i}`)==="not yet" && completeSession>0){
-                        this.startBreak();
-                        completeSession++;
-                        
-                    }
-                    
-                }
-                if(completeSession==sessValue)
-                    timer.innerHTML="Completed all Pomodoro Sessions. Well Done!";
+                startSessions();
             }
-            // else if(distance < 0 && isRepeat){
-            //     clearInterval(this.timerId);
-            //     this.resetTimer();
-            // }
+            
         }, 1000);
         this.state=1;
     }
@@ -301,20 +284,7 @@ class NewTimer{
             if (distance < 0) {
                 clearInterval(this.timerId);
                 // timer.innerHTML = "EXPIRED";
-                let completeSession=0;
-                for(let i=1;i<=sessValue;i++){
-                    if(localStorage.getItem(`sess${i}`)==="not yet" && completeSession===0){
-                        localStorage.setItem(`sess${i}`,new Date().toLocaleTimeString());
-                        (document.getElementById(`p${i}`)as HTMLElement).innerHTML=`<li id="p${i}"><strong>P${i}:</strong> <em>`+localStorage.getItem(`sess${i}`)+`</em></li>`;
-                        completeSession++;
-                    }else if(localStorage.getItem(`sess${i}`)==="not yet" && completeSession===1){
-                        this.startBreak();
-                        completeSession++;
-                    }
-                    
-                }
-                if(completeSession==sessValue)
-                    timer.innerHTML="Completed all Pomodoro Sessions. Well Done!";
+                startSessions();
             }
         }, 1000);
         this.state=1;
@@ -414,6 +384,23 @@ class NewTimer{
 
 var count=0;
 var nTimeObj= new NewTimer();
+
+function startSessions(){
+    let completeSession=0;
+        for(let i=1;i<=sessValue;i++){
+            if(localStorage.getItem(`sess${i}`)==="not yet" && completeSession===0){
+                localStorage.setItem(`sess${i}`,new Date().toLocaleTimeString());
+                (document.getElementById(`p${i}`)as HTMLElement).innerHTML=`<li id="p${i}"><strong>P${i}:</strong> <em>`+localStorage.getItem(`sess${i}`)+`</em></li>`;
+                completeSession++;
+            }else if(localStorage.getItem(`sess${i}`)==="not yet" && completeSession===1){
+                nTimeObj.startBreak();
+                completeSession++;
+            }
+                    
+        }
+        if(completeSession==sessValue)
+            timer.innerHTML="Completed all Pomodoro Sessions. Well Done!";
+}
 
 function startNewEvent(){
     isPause=!isPause;
