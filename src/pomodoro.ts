@@ -388,15 +388,13 @@ var nTimeObj= new NewTimer();
 function startSessions(){
     let completeSession=0;
         for(let i=1;i<=sessValue;i++){
-            if(localStorage.getItem(`sess${i}`)==="not yet" && completeSession===0){
+            if(localStorage.getItem(`sess${i}`)==="not yet"){
                 localStorage.setItem(`sess${i}`,new Date().toLocaleTimeString());
                 (document.getElementById(`p${i}`)as HTMLElement).innerHTML=`<li id="p${i}"><strong>P${i}:</strong> <em>`+localStorage.getItem(`sess${i}`)+`</em></li>`;
                 completeSession++;
-            }else if(localStorage.getItem(`sess${i}`)==="not yet" && completeSession===1){
                 nTimeObj.startBreak();
-                completeSession++;
-            }
-                    
+                break;
+            }      
         }
         if(completeSession==sessValue)
             timer.innerHTML="Completed all Pomodoro Sessions. Well Done!";
