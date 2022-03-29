@@ -214,7 +214,7 @@ class NewTimer {
                 clearInterval(this.timerId);
                 // timer.innerHTML = "EXPIRED";
                 // tickingClock.play();
-                startSessions();
+                markSessions();
             }
         }, 1000);
         this.state = 1;
@@ -252,7 +252,7 @@ class NewTimer {
             if (distance < 0) {
                 clearInterval(this.timerId);
                 // timer.innerHTML = "EXPIRED";
-                startSessions();
+                markSessions();
             }
         }, 1000);
         this.state = 1;
@@ -345,6 +345,11 @@ class NewTimer {
 var count = 0;
 var nTimeObj = new NewTimer();
 function startSessions() {
+    for (let i = 1; i <= sessValue; i++) {
+        startNewEvent();
+    }
+}
+function markSessions() {
     let completeSession = 0;
     for (let i = 1; i <= sessValue; i++) {
         if (localStorage.getItem(`sess${i}`) === "not yet") {
@@ -393,7 +398,7 @@ function resetNewEvent() {
     nTimeObj.resetTimer();
 }
 startbtn2.addEventListener("click", () => {
-    startNewEvent();
+    startSessions();
 });
 resetbtn2.addEventListener("click", () => {
     resetNewEvent();
